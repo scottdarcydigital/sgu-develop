@@ -47834,10 +47834,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FirstPerson-AIO
       objectReference: {fileID: 0}
-    - target: {fileID: 8494402007084608213, guid: cb2f153797ef4b6409fdde2222b061dd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8497117060099945471, guid: cb2f153797ef4b6409fdde2222b061dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.01
