@@ -10,6 +10,7 @@ public class Puddle : MonoBehaviour
     // you need to be able to talk to the game manager here...?
     private GameManager kinoLocation;
     private GameManager playerLocation;
+    private GameManager startCountdownClock;
 
     // talk to the remote script, but only when the puddle is active as not to cross wires...
     public Remote remoteScript;
@@ -65,10 +66,16 @@ public class Puddle : MonoBehaviour
 
     }
 
+    void setToTrue()
+    {
+        startCountdownClock.isCounting = true;
+    }
+
     void OnEnable()
     {
         Debug.Log("OnEnable called");
         SceneManager.sceneLoaded += OnSceneLoaded;
+        Invoke("setToTrue", 1.0f);
 
 
     }
@@ -140,6 +147,7 @@ public class Puddle : MonoBehaviour
     {
         kinoLocation = FindObjectOfType<GameManager>();
         playerLocation = FindObjectOfType<GameManager>();
+        startCountdownClock = FindObjectOfType<GameManager>();
 
         remoteScript = FindObjectOfType<Remote>();
 

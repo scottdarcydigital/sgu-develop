@@ -11,6 +11,15 @@ public class GameManager : MonoBehaviour
     public string PlayerLocation;
     public string KinoLocation;
 
+    public GameObject countDownClock;
+
+    public int CountDownClock;
+    public bool isCounting;
+
+    public GameObject puddle;
+
+    public DialGate gateTimeOut;
+
     void setLocationData(Scene scene)
     {
         // if the assigned player gameobject is in the scene then...
@@ -58,9 +67,28 @@ public class GameManager : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.sceneLoaded += OnSceneLoaded;
         setLocationData(scene);
+        gateTimeOut = FindObjectOfType<DialGate>();
+
     }
 
-    
+
+    void CountSecond()
+    {
+        if (CountDownClock > 0)
+        {
+            CountDownClock--;
+            Debug.Log("CountSecond123 : " + CountDownClock);
+        }
+        else
+        {
+            isCounting = false;
+            Debug.Log("TIMES UP 123");
+            CancelInvoke("CountSecond");
+            gateTimeOut.ShutDownGate();
+            countDownClock.SetActive(false);
+        }
+    }
+
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -71,5 +99,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // always check if the kino is active then freeze the player and vice versa???
+        if (isCounting)
+        {
+            countDownClock.SetActive(true);
+            Debug.Log("InvokeRepeating123");
+            InvokeRepeating("CountSecond", 0.0f, 1.0f);  //1s delay, repeat every 1s
+            isCounting = false; // only run this once. the true is on the puddle.cs onEnabled script
+        }
     }
 }
