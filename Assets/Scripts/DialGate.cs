@@ -8,6 +8,7 @@ public class DialGate : MonoBehaviour
     private DialDate_Interface UIbuttons;
 
     public GameManager playerLocation;
+    public GameManager countDownVariables;
 
     [SerializeField] public AudioSource GateShutDown;
     [SerializeField] private AudioSource GateTurnOn;
@@ -293,7 +294,7 @@ public class DialGate : MonoBehaviour
     public void DialIsTrue()
     {
         DialNow = true;
-        //currentlyDialing = true;
+        
     }
 
     public void attemptingToDialSameAddress()
@@ -374,6 +375,7 @@ public class DialGate : MonoBehaviour
         RandomRotationDirection = Random.Range(0.0f, 1.0f);       // NOTE USE THIS TO FIGURE OUT WHICH WAY AND TO RANDOMISE THE SPIN DIRECTION OF THE GATE
 
         playerLocation = FindObjectOfType<GameManager>();
+        countDownVariables = FindObjectOfType<GameManager>();
 
         if (RandomRotationDirection <= 0.5f)
         {
@@ -432,6 +434,7 @@ public class DialGate : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
+            countDownVariables.gateManuallyShutDown = true;
             ShutDownGate();
             Invoke("smokeGateRoomPlay" , 2);    // difference in these values determines time particle system is played for 
             Invoke("smokeGateRoomStop" , 4);
@@ -521,7 +524,11 @@ public class DialGate : MonoBehaviour
         
         if (DialNow == true)
         {
-            
+            // set the time for the countdownclock upon dialing a valid planet
+            countDownVariables.countDownTime = countDownVariables.countDownTimeRecord;
+            // when the clock starts counting again your need to reset this value in order for the game over state to trigger when the timer runs out correctly. 
+            countDownVariables.gateManuallyShutDown = false;
+
             if (GatePaused) { 
                 xSpeed = Mathf.Lerp(xSpeed, 0.0f * forwardSpeed, forward_dcc * Time.deltaTime);
             } 
@@ -587,6 +594,14 @@ public class DialGate : MonoBehaviour
         Invoke("UnlitSymbols", 2.0f);
         Invoke("UIButtons_Active", 2.5f);
         Invoke("UIButtons_LastSceneLoaded_Active", 2.5f);
+
+        // if you have manually shut down the gate then handle the countdown reset manually as well
+        countDownVariables.countDownTime = 0;
+       // countDownVariables.gateManuallyShutDown = true;
+
+
+        // reset countdownclock 
+        //countDownVariables.countDownTime = 0;
     }
 
     public void Shev_1()

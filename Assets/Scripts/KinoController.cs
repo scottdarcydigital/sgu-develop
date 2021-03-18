@@ -40,16 +40,23 @@ public class KinoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("targetAngle : 1" );
 
-       
+
 
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        if (direction.magnitude >= 0.1f && !Player.activeSelf)
+        Debug.Log("targetAngle : 2" + direction.magnitude);
+
+
+       // if (direction.magnitude >= 0.1f && !Player.activeSelf)
+        if (direction.magnitude >= 0.1f)
         {
+            Debug.Log("targetAngle : 2");
+
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
@@ -72,8 +79,8 @@ public class KinoController : MonoBehaviour
 
 
 
-        if (!Player.activeSelf)
-        {
+        //if (!Player.activeSelf)
+       // {
             activeForwardSpeed = Mathf.Lerp(activeForwardSpeed, Input.GetAxisRaw("Vertical") * forwardSpeed, forward_acc * Time.deltaTime);
             activeStrifeSpeed = Mathf.Lerp(activeStrifeSpeed, Input.GetAxisRaw("Horizontal") * strifeSpeed, strife_acc * Time.deltaTime);
             activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, Input.GetAxisRaw("Hover") * hoverSpeed, hover_acc * Time.deltaTime);
@@ -81,7 +88,7 @@ public class KinoController : MonoBehaviour
             transform.position += transform.forward * activeForwardSpeed * Time.deltaTime;
             transform.position += transform.right * activeStrifeSpeed * Time.deltaTime;
             transform.position += transform.up * activeHoverSpeed * Time.deltaTime;
-        }
+        //}
 
 
     }

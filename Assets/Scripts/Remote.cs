@@ -25,8 +25,12 @@ public class Remote : MonoBehaviour
 
     public Rigidbody player_RB;
 
+    public GameObject Button_1;
+    public GameObject Button_2;
+    public GameObject Button_3;
+
     // public GameObject RealKino;
-   // public GameObject StandInKino;
+    // public GameObject StandInKino;
 
     public void switchCams()
     {
@@ -35,7 +39,7 @@ public class Remote : MonoBehaviour
             Debug.Log("KINO ACTIVE");
             PlayerScript.enabled = false;
             kinoScript.enabled = true;
-            player_RB.constraints = RigidbodyConstraints.FreezeAll; // fixes bug of player momentum continuing after the player has toggled to the kino
+            //player_RB.constraints = RigidbodyConstraints.FreezeAll; // fixes bug of player momentum continuing after the player has toggled to the kino
                                                                     //Player.SetActive(false);
                                                                     //LastSceneLoaded.Player_Active = false;
                                                                     //LastSceneLoaded.Kino_Active = true;
@@ -53,8 +57,8 @@ public class Remote : MonoBehaviour
     }
     void Start()
     {
-       // SaveKinoLocation = FindObjectOfType<KinoArrival>();
-       kinoScript= FindObjectOfType<KinoController>();
+        // SaveKinoLocation = FindObjectOfType<KinoArrival>();
+        kinoScript = FindObjectOfType<KinoController>();
         PlayerScript = FindObjectOfType<FirstPersonAIO>();
         switchCams();
     }
@@ -94,6 +98,8 @@ public class Remote : MonoBehaviour
                 kinoCam.enabled = !kinoCam.enabled;
                 PlayerCam.enabled = !PlayerCam.enabled;
 
+
+
                 switchCams();
 
             } else
@@ -131,19 +137,65 @@ public class Remote : MonoBehaviour
 
     public void ShowUI()
     {
+        Scene scene = SceneManager.GetActiveScene();
+
         Debug.Log("UI OPEB YO");
-        Time.timeScale = 0f;
+
+        // bad way of doing this!
+        //Time.timeScale = 0f;
+
+        //taken from FirstPersonAIO.cs
+        PlayerScript.enableCameraMovement = false;
+        PlayerScript.playerCanMove = false;
+
         remoteMenuUI.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        // manage planets within range
+
+        // ADD ONE
+        if (scene.name == "Prefab_GateRoom")
+        {
+            Button_1.SetActive(false);
+            Button_2.SetActive(true);
+            Button_3.SetActive(true);
+        }
+
+        // ADD TWO
+        if (scene.name == "GateRoom_1")
+        {
+            Button_1.SetActive(false);
+            Button_2.SetActive(false);
+            Button_3.SetActive(true);
+        }
+
+        // ADD THREE
+        if (scene.name == "AddressThree")
+        {
+            Button_1.SetActive(true);
+            Button_2.SetActive(false);
+            Button_3.SetActive(false);
+        }
+
+       
+
     }
 
     public void HideUI()
     {
-        Time.timeScale = 1f;
+        // bad way of doing this!
+        //Time.timeScale = 1f;
+
+        //taken from FirstPersonAIO.cs
+        PlayerScript.enableCameraMovement = true;
+        PlayerScript.playerCanMove = true;
+
         remoteMenuUI.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+
 
 }

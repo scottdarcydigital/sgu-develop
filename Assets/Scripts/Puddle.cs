@@ -15,7 +15,6 @@ public class Puddle : MonoBehaviour
     // talk to the remote script, but only when the puddle is active as not to cross wires...
     public Remote remoteScript;
 
-
     public GameObject Gate;
 
     public bool GateRotated = false;
@@ -75,9 +74,7 @@ public class Puddle : MonoBehaviour
     {
         Debug.Log("OnEnable called");
         SceneManager.sceneLoaded += OnSceneLoaded;
-        Invoke("setToTrue", 1.0f);
-
-
+        Invoke("setToTrue", 0.01f);
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -86,10 +83,10 @@ public class Puddle : MonoBehaviour
         Debug.Log(mode);
         Debug.Log("PUDDLE ACTIVE");
 
-
-
         // when the scene changes to a new one, update the gates name to one which is the current scene. 
         gateLocation = scene.name;
+
+
 
         // if the puddle is active when the scene loads, you need to change the planet_destination to the one you where just on
 
@@ -211,6 +208,7 @@ public class Puddle : MonoBehaviour
     private void OnDisable()
     {
         Debug.Log("PUDDLE INACTIVE");
+        
     }
 
 

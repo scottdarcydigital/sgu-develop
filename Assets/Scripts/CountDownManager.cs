@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CountDownManager : MonoBehaviour
 {
-    public int countDownTime;
+    // public int countDownTime;
+    public GameManager countDownTime;
 
     public GameObject MilliSeconds;
     public GameObject MilliTenSeconds;
@@ -14,23 +15,104 @@ public class CountDownManager : MonoBehaviour
     public GameObject TenMinute;
 
     public List<Material> CountDownMaterials;
+    public List<Material> CountDownMaterialsLowTime;
 
-    public int materialCount_MilliSecond = 9;
-    public int materialCount_MilliTenSecond = 9;
-    public int materialCount_Second = 9;
-    public int materialCount_TenSecond = 9;
-    public int materialCount_Min = 9;
-    public int materialCount_TenMin = 9;
+    public int materialCount_MilliSecond;
+    public int materialCount_MilliTenSecond;
+    public int materialCount_Second;
+    public int materialCount_TenSecond;
+    public int materialCount_Min;
+    public int materialCount_TenMin;
 
     // Start is called before the first frame update
     void Start()
     {
-        //countDownTime = FindObjectOfType<GameManager>();
+        countDownTime = FindObjectOfType<GameManager>();
     }
+
+    void Update()
+    {
+        // if the user manually shuts the gate down reset the clock to nothing.
+        /*
+         if (countDownTime.gateManuallyShutDown)
+        {
+            Debug.Log("MSD");
+            MilliSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
+            MilliTenSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
+            Seconds.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
+            TenSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
+            Minute.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
+            TenMinute.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
+        }
+        */
+
+        // only update timers when the gate is active
+        // the gate needs to be active for this because initially the number is a 2 digit number and therefore would always trigger x2 white and x4 red 0's
+
+        if (countDownTime.puddle.activeSelf)
+        {
+
+            if (countDownTime.countDownTime > 10000)
+            {
+                MilliSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[countDownTime.Count_MilliSecond];
+                MilliTenSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[countDownTime.Count_TenMilliSecond];
+                Seconds.GetComponent<MeshRenderer>().material = CountDownMaterials[countDownTime.Count_Second];
+                TenSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[countDownTime.Count_TenSecond];
+                Minute.GetComponent<MeshRenderer>().material = CountDownMaterials[countDownTime.Count_Min];
+                TenMinute.GetComponent<MeshRenderer>().material = CountDownMaterials[countDownTime.Count_TenMin];
+            }
+
+            // if countdown is low, change assigned materials without interupting count
+            if (countDownTime.countDownTime <= 10000)
+            {
+                MilliSeconds.GetComponent<MeshRenderer>().material = CountDownMaterialsLowTime[countDownTime.Count_MilliSecond];
+                MilliTenSeconds.GetComponent<MeshRenderer>().material = CountDownMaterialsLowTime[countDownTime.Count_TenMilliSecond];
+                Seconds.GetComponent<MeshRenderer>().material = CountDownMaterialsLowTime[countDownTime.Count_Second];
+                TenSeconds.GetComponent<MeshRenderer>().material = CountDownMaterialsLowTime[countDownTime.Count_TenSecond];
+                Minute.GetComponent<MeshRenderer>().material = CountDownMaterialsLowTime[0];
+                TenMinute.GetComponent<MeshRenderer>().material = CountDownMaterialsLowTime[0];
+            }
+
+            // fixes bug of last frame landing on a '1'
+            if (countDownTime.countDownTime == 0)
+            {
+                MilliSeconds.GetComponent<MeshRenderer>().material = CountDownMaterialsLowTime[0];
+                MilliTenSeconds.GetComponent<MeshRenderer>().material = CountDownMaterialsLowTime[0];
+            }
+
+            // if the largest digit is dropped dont leave the texture at '1'
+            if (countDownTime.countDownTime <= 100)
+            {
+                Seconds.GetComponent<MeshRenderer>().material = CountDownMaterialsLowTime[0];
+            }
+
+            // if the largest digit is dropped dont leave the texture at '1'
+            if (countDownTime.countDownTime <= 1000)
+            {
+                TenSeconds.GetComponent<MeshRenderer>().material = CountDownMaterialsLowTime[0];
+            }
+
+            // if the largest digit is dropped dont leave the texture at '1'
+            if (countDownTime.countDownTime <= 10000 && countDownTime.TimeIsLow == false)
+            {
+                Minute.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
+            }
+
+            // if the largest digit is dropped dont leave the texture at '1'
+            if (countDownTime.countDownTime <= 100000 && countDownTime.TimeIsLow == false)
+            {
+                TenMinute.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
+            }
+        }
+    }       
+            
 
     private void OnEnable()
     {
-        countDownTime = countDownTime * 100000;
+
+
+
+        //countDownTime.countDownTime = countDownTime.countDownTime * 100000;
         // if (countDownTime == 10 || countDownTime == 20 || countDownTime == 30 || countDownTime == 40 || countDownTime == 50 || countDownTime == 60 || countDownTime == 70 || countDownTime == 80 || countDownTime == 90)
         //{
         // only use minutes if the time is large enough to allow it
@@ -47,11 +129,11 @@ public class CountDownManager : MonoBehaviour
         // for now 1 = 10,000 - ten secs
 
         
-            InvokeRepeating("CountDown", 0.0f, 0.01f);
-        
+           // InvokeRepeating("CountDown", 0.0f, 0.01f);
 
 
-        if (countDownTime >= 10000)
+        /*
+        if (countDownTime.countDownTime >= 10000)
         {
             MilliSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
             InvokeRepeating("CountMilliSecond", 0.0f, 0.01f);
@@ -63,6 +145,7 @@ public class CountDownManager : MonoBehaviour
         
             Seconds.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
             InvokeRepeating("CountSecond", 0.0f, 1.0f);
+            InvokeRepeating("CountSecond", 0.0f, 1.0f);
             materialCount_Second = 0;
         
             TenSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
@@ -73,160 +156,19 @@ public class CountDownManager : MonoBehaviour
             InvokeRepeating("CountMinute", 0.0f, 100.0f);
             materialCount_Min = 0;
 
-            TenMinute.GetComponent<MeshRenderer>().material = CountDownMaterials[countDownTime / 100000];
+            TenMinute.GetComponent<MeshRenderer>().material = CountDownMaterials[countDownTime.countDownTime / 100000];
             InvokeRepeating("CountTenMinute", 0.0f, 1000.0f);
-            materialCount_TenMin = countDownTime / 100000;
+            materialCount_TenMin = countDownTime.countDownTime / 100000;
         }
+        */
 
     }
 
     private void OnDisable()
     {
-        CancelInvoke("CountSecond");
+        // CancelInvoke("CountSecond");
         Debug.Log("MATERIALCOUNTSECS CANCELLED : " + materialCount_Second);
     }
 
-    void CountDown()
-    {
-        if (countDownTime > 0)
-        {
-            countDownTime--;
-            Debug.Log("countDownTime : " + countDownTime);
-        }
-            
-    }
-
-    void CountMilliSecond()
-    {
-        if (countDownTime > 0)
-        {
-
-            if (materialCount_MilliSecond == 0)
-            {
-                materialCount_MilliSecond = 9;
-            }
-            else
-            {
-                materialCount_MilliSecond--;
-            }
-
-            MilliSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[materialCount_MilliSecond];
-        }
-        else
-        {
-            MilliSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
-            CancelInvoke("CountMilliSecond");
-        }
-    }
-
-    void CountTenMilliSecond()
-    {
-        if (countDownTime > 0)
-        {
-
-            if (materialCount_MilliTenSecond == 0)
-            {
-                materialCount_MilliTenSecond = 9;
-            }
-            else
-            {
-                materialCount_MilliTenSecond--;
-            }
-
-            MilliTenSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[materialCount_MilliTenSecond];
-        }
-        else
-        {
-            CancelInvoke("CountTenMilliSecond");
-        }
-    }
-
-    void CountSecond()
-    {
-        if (countDownTime > 0)
-        {
-
-            if (materialCount_Second == 0)
-            {
-                materialCount_Second = 9;
-            }
-            else
-            {
-                materialCount_Second--;
-            }
-
-            Seconds.GetComponent<MeshRenderer>().material = CountDownMaterials[materialCount_Second];
-        }
-        else
-        {
-            CancelInvoke("CountSecond");
-        }
-    }
-
-    void CountTenSecond()
-    {
-        if (countDownTime > 0)
-        {
-
-            if (materialCount_TenSecond == 0)
-            {
-                materialCount_TenSecond = 9;
-            }
-            else
-            {
-                materialCount_TenSecond--;
-            }
-
-            TenSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[materialCount_TenSecond];
-        }
-        else
-        {
-            CancelInvoke("CountTenSecond");
-        }
-    }
-    void CountMinute()
-    {
-        if (countDownTime > 0)
-        {
-
-            if (materialCount_Min == 0)
-            {
-                materialCount_Min = 9;
-            }
-            else
-            {
-                materialCount_Min--;
-            }
-
-            Minute.GetComponent<MeshRenderer>().material = CountDownMaterials[materialCount_Min];
-        }
-        else
-        {
-            Minute.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
-            CancelInvoke("CountMinute");
-        }
-    }
-    void CountTenMinute()
-    {
-        if (countDownTime > 0)
-        {
-
-            if (materialCount_TenMin == 0)
-            {
-                materialCount_TenMin = 9;
-            }
-            else
-            {
-                materialCount_TenMin--;
-            }
-
-            TenMinute.GetComponent<MeshRenderer>().material = CountDownMaterials[materialCount_TenMin];
-        }
-        else
-        {
-            TenMinute.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
-            CancelInvoke("CountTenMinute");
-        }
-    }
 }
     
