@@ -103,6 +103,16 @@ public class CountDownManager : MonoBehaviour
             {
                 TenMinute.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
             }
+        } 
+        // if puddle is inactive then reset the clock display to ZERO
+        else if (!countDownTime.puddle.activeSelf)
+        {
+            MilliSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
+            MilliTenSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
+            Seconds.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
+            TenSeconds.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
+            Minute.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
+            TenMinute.GetComponent<MeshRenderer>().material = CountDownMaterials[0];
         }
     }       
             

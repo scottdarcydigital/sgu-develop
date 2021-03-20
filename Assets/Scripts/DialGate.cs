@@ -434,7 +434,6 @@ public class DialGate : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            countDownVariables.gateManuallyShutDown = true;
             ShutDownGate();
             Invoke("smokeGateRoomPlay" , 2);    // difference in these values determines time particle system is played for 
             Invoke("smokeGateRoomStop" , 4);
@@ -524,10 +523,11 @@ public class DialGate : MonoBehaviour
         
         if (DialNow == true)
         {
-            // set the time for the countdownclock upon dialing a valid planet
-            countDownVariables.countDownTime = countDownVariables.countDownTimeRecord;
+            // set the time for the countdownclock upon dialing a valid planet (pre-multiply)
+           // countDownVariables.countDownTime = countDownVariables.countDownTimeRecord;
+
             // when the clock starts counting again your need to reset this value in order for the game over state to trigger when the timer runs out correctly. 
-            countDownVariables.gateManuallyShutDown = false;
+            //countDownVariables.gateManuallyShutDown = false;
 
             if (GatePaused) { 
                 xSpeed = Mathf.Lerp(xSpeed, 0.0f * forwardSpeed, forward_dcc * Time.deltaTime);
@@ -578,6 +578,21 @@ public class DialGate : MonoBehaviour
 
     public void ShutDownGate()
     {
+        //Debug.Log("gateManuallyShutDown WAS .X: " + countDownVariables.gateManuallyShutDown);
+        
+        //countDownVariables.gateManuallyShutDown = true;
+
+        // if you have manually shut down the gate then handle the countdown reset as well
+        //countDownVariables.countDownTime = countDownVariables.countDownTimeRecord;
+
+        //Debug.Log("gateManuallyShutDown IS .X: " + countDownVariables.gateManuallyShutDown);
+
+        /*
+
+         // THis should only be false while the clock is counting down...
+         countDownVariables.gateManuallyShutDown = true;
+        */
+
         GateIsActive = false;
         DialNow = false;
 
@@ -587,21 +602,15 @@ public class DialGate : MonoBehaviour
 
         GateShutDown.Play();
         GetConst.Stop();
-       // xSpeed = 40.0f; //old
-
+        // xSpeed = 40.0f; //old
         Invoke("shutdownEventHorizon", 1.0f);
         Invoke("UnlitShevrons", 2.0f);
         Invoke("UnlitSymbols", 2.0f);
         Invoke("UIButtons_Active", 2.5f);
         Invoke("UIButtons_LastSceneLoaded_Active", 2.5f);
 
-        // if you have manually shut down the gate then handle the countdown reset manually as well
-        countDownVariables.countDownTime = 0;
-       // countDownVariables.gateManuallyShutDown = true;
 
 
-        // reset countdownclock 
-        //countDownVariables.countDownTime = 0;
     }
 
     public void Shev_1()

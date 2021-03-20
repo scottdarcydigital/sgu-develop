@@ -70,12 +70,29 @@ public class Puddle : MonoBehaviour
         startCountdownClock.isCounting = true;
     }
 
+    void setToFalse()
+    {
+        startCountdownClock.isCounting = false;
+    }
+
+    void resetClock ()
+    {
+        startCountdownClock.countDownTime = 10;
+    }
+
     void OnEnable()
     {
         Debug.Log("OnEnable called");
         SceneManager.sceneLoaded += OnSceneLoaded;
         Invoke("setToTrue", 0.01f);
     }
+
+    private void OnDisable()
+    {
+        Debug.Log("PUDDLE INACTIVE");
+        Invoke("resetClock", 0.01f);
+    }
+
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -205,12 +222,7 @@ public class Puddle : MonoBehaviour
         */
     }
 
-    private void OnDisable()
-    {
-        Debug.Log("PUDDLE INACTIVE");
-        
-    }
-
+    
 
 
     // Update is called once per frame

@@ -22,9 +22,9 @@ public class GameManager : MonoBehaviour
 
     public bool isCounting = false;
 
-    public int countDownTimeRecord;
+   // public int countDownTimeRecord;
 
-    public bool gateManuallyShutDown = false;
+    // public bool gateManuallyShutDown = false;
 
     // TODO still need to set this up...
     public DialGate gateTimeOut;
@@ -52,12 +52,6 @@ public class GameManager : MonoBehaviour
     void cancelAllCountDowns()
     {
         // for some reason the functions between scripts updated with a small lag detaly meaning that some of the digits will still display millisecond caught inbetween function calls, this fixes that issue
-        Count_MilliSecond = 0;
-        Count_TenMilliSecond = 0;
-        Count_Second = 0;
-        Count_TenSecond = 0;
-        Count_Min = 0;
-        Count_TenMin = 0;
         CancelInvoke("CountDown");
         CancelInvoke("CountMilliSecond");
         CancelInvoke("CountTenMilliSecond");
@@ -65,30 +59,53 @@ public class GameManager : MonoBehaviour
         CancelInvoke("CountTenSecond");
         CancelInvoke("CountMin");
         CancelInvoke("CountTenMin");
-
+        Count_MilliSecond = 0;
+        Count_TenMilliSecond = 0;
+        Count_Second = 0;
+        Count_TenSecond = 0;
+        Count_Min = 0;
+        Count_TenMin = 0;
     }
 
     // make sure the inputed number actually counts down...
     void CountDown()
     {
-        if (countDownTime > 0)
+        // only countdown if the user has NOT manually shut down the gate eg: Pause the clock
+        if (countDownTime > 0 && puddle.activeSelf)
         {
             countDownTime--;
-            Debug.Log("countDownTime : " + countDownTime);
+          //  Debug.Log("CDT 3: " + countDownTimeRecord);
+
+            //gateManuallyShutDown = false;
         } 
+
+        // DEBUG ONLY
+        if (countDownTime == 0)
+        {
+            Debug.Log("countDownTime ZERO : " + countDownTime);
+        }
+
         if (countDownTime <= 10000)
         {
             TimeIsLow = true;
         }
-        if (countDownTime == 0 && gateManuallyShutDown == false)
+        // if the timer hits zero and you are NOT on destiny, fail the mission....
+        if (countDownTime == 0 && PlayerLocation != "Prefab_GateRoom")
         {
             gateTimeOut.ShutDownGate();
-            Debug.Log("isCounting : " + isCounting);
+            Debug.Log("gateManuallyShutDown : " + countDownTime);
             cancelAllCountDowns();
-            Invoke("GameOver", 5.0f);
+            Debug.Log("gateManuallyShutDown : GAMEOVER");
+            //Invoke("GameOver", 5.0f);
+        }
 
-            // Reset the clock
-            countDownTime = countDownTimeRecord;
+        else if (countDownTime == 0 && PlayerLocation == "Prefab_GateRoom")
+        {
+            gateTimeOut.ShutDownGate();
+            Debug.Log("gateManuallyShutDown : " + countDownTime);
+            cancelAllCountDowns();
+            Debug.Log("gateManuallyShutDown : MISSON COMPLETE");
+           // Invoke("GameOver", 5.0f);
         }
 
     }
@@ -97,7 +114,6 @@ public class GameManager : MonoBehaviour
            PlayerScript.enableCameraMovement = false;
            PlayerScript.playerCanMove = false;
            GameOverScreen.SetActive(true);
-           
            Invoke("closeGame", 15.0f);
     }
 
@@ -108,7 +124,7 @@ public class GameManager : MonoBehaviour
 
     void CountMilliSecond()
     {
-        if (countDownTime > 0)
+        if (countDownTime > 0 && puddle.activeSelf)
         {
 
             if (Count_MilliSecond == 0)
@@ -128,7 +144,7 @@ public class GameManager : MonoBehaviour
 
     void CountTenMilliSecond()
     {
-        if (countDownTime >= 10)
+        if (countDownTime >= 10 && puddle.activeSelf)
         {
 
             if (Count_TenMilliSecond == 0)
@@ -147,7 +163,7 @@ public class GameManager : MonoBehaviour
     }
     void CountSecond()
     {
-        if (countDownTime >= 100)
+        if (countDownTime >= 100 && puddle.activeSelf)
         {
 
             if (Count_Second == 0)
@@ -167,7 +183,7 @@ public class GameManager : MonoBehaviour
 
     void CountTenSecond()
     {
-        if (countDownTime >= 1000)
+        if (countDownTime >= 1000 && puddle.activeSelf)
         {
 
             if (Count_TenSecond == 0)
@@ -187,7 +203,7 @@ public class GameManager : MonoBehaviour
 
     void CountMin()
     {
-        if (countDownTime >= 10000)
+        if (countDownTime >= 10000 && puddle.activeSelf)
         {
 
             if (Count_Min == 0)
@@ -207,7 +223,7 @@ public class GameManager : MonoBehaviour
 
     void CountTenMin()
     {
-        if (countDownTime >= 100000)
+        if (countDownTime >= 100000 && puddle.activeSelf)
         {
             if (Count_TenMin == 0)
             {
@@ -278,12 +294,16 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
+        if (!puddle.activeSelf)
+        {
+            cancelAllCountDowns();
+        }
+
         // Gate is now active so start running the countdown...
         // only run this once. the true is on the puddle.cs onEnabled script, so that the countdownclock starts counting when the gate is active...
         if (isCounting)
         {
-            // save a record of what the time was set to so that the clock can reset... do I need this now???
-            countDownTimeRecord = countDownTime;
+           // Debug.Log("CDT 1: " + countDownTimeRecord);
 
             countDownTime = countDownTime * 10000;
 
@@ -314,6 +334,9 @@ public class GameManager : MonoBehaviour
                 Count_Min = countDownTime / 10000;
             }
             isCounting = false; // only run this once. the true is on the puddle.cs onEnabled script, so that the countdownclock starts counting when the gate is active...
+
+            // save a record of what the time was set to so that the clock can reset... do I need this now???
+            
         }
         Debug.Log("CDT : " + countDownTime);
 
