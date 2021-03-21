@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &674289120
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3886943102934881318}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2, y: 2.84, z: 1.2}
+  m_Center: {x: 0, y: 2.34, z: 0}
 --- !u!1 &4120894784186334734
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,6 +25,7 @@ GameObject:
   - component: {fileID: 4120894784186334720}
   - component: {fileID: 4120894784186334721}
   - component: {fileID: 4120894784186334722}
+  - component: {fileID: 8503194084024521312}
   m_Layer: 0
   m_Name: CropBot
   m_TagString: Untagged
@@ -53,13 +67,19 @@ MonoBehaviour:
   isAtCropHoverPosition: 0
   inRange: 0
   isFarming: 0
+  ReadyToTravel: 0
+  shouldBeScouting: 0
+  sendThroughGate: 0
   cropsBeingFarmed: {fileID: 0}
   CropBotLight: {fileID: 2716799690977585561}
   CropBotSpotlight: {fileID: 4120894784076799566}
   YellowGlow: {fileID: 2100000, guid: 572c13478030a62418f5709fe0d54563, type: 2}
   BlueGlow: {fileID: 2100000, guid: 53391b08171887a4fa972d6f649623d9, type: 2}
   CropDetected: {fileID: 2100000, guid: b63c66c2e0313b8418a1c9f11ee40cf6, type: 2}
+  GateReadyLocation: {fileID: 0}
+  GatePuddleLocation: {fileID: 0}
   CropsToHarvest: []
+  Inventory_Crops: {fileID: 0}
 --- !u!135 &4120894784186334721
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -89,6 +109,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8503194084024521312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4120894784186334734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc8c2124d83320429863107710930a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4120894785494381040
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,6 +204,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crop_Bot
       objectReference: {fileID: 0}
+    - target: {fileID: 6951329249420068567, guid: 09b32e3ca6a769d41b15130bd6de2770, type: 3}
+      propertyPath: m_TagString
+      value: CropBotBody
+      objectReference: {fileID: 0}
     - target: {fileID: 7724735162734812269, guid: 09b32e3ca6a769d41b15130bd6de2770, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -222,6 +258,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09b32e3ca6a769d41b15130bd6de2770, type: 3}
+--- !u!1 &3886943102934881318 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6951329249420068567, guid: 09b32e3ca6a769d41b15130bd6de2770, type: 3}
+  m_PrefabInstance: {fileID: 6163500686049923825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4520174233022025372 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7724735162734812269, guid: 09b32e3ca6a769d41b15130bd6de2770, type: 3}

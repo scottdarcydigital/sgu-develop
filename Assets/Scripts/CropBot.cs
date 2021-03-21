@@ -11,6 +11,10 @@ public class CropBot : MonoBehaviour
     public bool isAtCropHoverPosition;
     public bool inRange;
     public bool isFarming;
+    public bool ReadyToTravel;
+
+    public bool shouldBeScouting;
+    public bool sendThroughGate;
 
     // this needs to be dynamic to the crops currently being farmed within the scene. Use the game manager later?
     public GameObject cropsBeingFarmed;
@@ -21,11 +25,18 @@ public class CropBot : MonoBehaviour
     public Material BlueGlow;
     public Material CropDetected;
 
+    public GameObject GateReadyLocation;
+    public GameObject GatePuddleLocation;
+
     // list of crops Currently found
     public List<GameObject> CropsToHarvest = new List<GameObject>();
 
     public GameManager Inventory_Crops;
-
+    
+   // when ther script is running again after gate travel, make sure the actual bot renders, not just turning on the 'containers' sphere collider for crop decection 
+    void OnEnable()
+    {
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -48,8 +59,6 @@ public class CropBot : MonoBehaviour
         Debug.Log("Inventory_Crops : " + Inventory_Crops);
 
         Destroy(cropsBeingFarmed);
-
-        
 
         Debug.Log("987" + cropsBeingFarmed.name);
         Debug.Log("987" + cropHoverPoint.name);
@@ -83,53 +92,90 @@ public class CropBot : MonoBehaviour
     }
 
         // Update is called once per frame
-        void Update()
+    void Update()
     {
 
-        // remove the nissing game objects 
-        CropsToHarvest = CropsToHarvest.Where(item => item != null).ToList();
-
-        // remove duplicates from the list
-        CropsToHarvest = CropsToHarvest.Distinct().ToList();
-
-        
-        if (CropsToHarvest.Count > 0)
+        if (Input.GetKeyDown(KeyCode.F1))
         {
-            inRange = true;
-        } else
-        {
-            inRange = false;
-        }
-        
-
-        // if you are within range of soe crops, then fly over to them and start farming
-        if (inRange)
-        {
-            cropsBeingFarmed = CropsToHarvest[0];
-            cropHoverPoint = CropsToHarvest[0].transform.GetChild(0);
-            cropFarmingPoint = CropsToHarvest[0].transform.GetChild(1);
-
-            if (!isAtCropHoverPosition)
-            {
-                this.transform.position = Vector3.MoveTowards(this.transform.position, cropHoverPoint.transform.position, 0.2f);
-            }
-            else if (isAtCropHoverPosition)
-            {
-                Invoke("StartFarming", 0.5f);
-            }
-
-            if (this.transform.position == cropHoverPoint.transform.position)
-            {
-                isAtCropHoverPosition = true;
-            }
+            shouldBeScouting = true;
+            sendThroughGate = false;
         }
 
-        /*
-        */
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            shouldBeScouting = false;
+            sendThroughGate = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            shouldBeScouting = false;
+            sendThroughGate = true;
+        }
+
+        if (sendThroughGate)
+        {
+            if (this.transform.position != GateReadyLocation.transform.position && !ReadyToTravel)
+            {
+                this.transform.position = Vector3.MoveTowards(this.transform.position, GateReadyLocation.transform.position, 0.2f);
+                if (this.transform.position == GateReadyLocation.transform.position)
+                {
+                    ReadyToTravel = true;
+                }
+            }
+            
+            if (ReadyToTravel)
+            {
+                this.transform.position = Vector3.MoveTowards(this.transform.position, GatePuddleLocation.transform.position, 0.3f);
+                //once the bot has travelled through the gate reset sendthrough gate to false and ready to travel to false as well
+                if (this.transform.position == GatePuddleLocation.transform.position)
+                {
+                    sendThroughGate = false;
+                    ReadyToTravel = false;
+                }
+            }
+        }
+
+        if (shouldBeScouting)
+        {
+            // remove the nissing game objects 
+            CropsToHarvest = CropsToHarvest.Where(item => item != null).ToList();
+
+            // remove duplicates from the list
+            CropsToHarvest = CropsToHarvest.Distinct().ToList();
 
 
-        //   float step = speed * Time.deltaTime; // calculate distance to move
-        //   transform.position = Vector3.MoveTowards(transform.position, cropHoverPoint.position, step);
+            if (CropsToHarvest.Count > 0)
+            {
+                inRange = true;
+            }
+            else
+            {
+                inRange = false;
+            }
 
+
+            // if you are within range of soe crops, then fly over to them and start farming
+            if (inRange)
+            {
+                cropsBeingFarmed = CropsToHarvest[0];
+                cropHoverPoint = CropsToHarvest[0].transform.GetChild(0);
+                cropFarmingPoint = CropsToHarvest[0].transform.GetChild(1);
+
+                if (!isAtCropHoverPosition)
+                {
+                    this.transform.position = Vector3.MoveTowards(this.transform.position, cropHoverPoint.transform.position, 0.2f);
+                }
+                else if (isAtCropHoverPosition)
+                {
+                    Invoke("StartFarming", 0.5f);
+                }
+
+                if (this.transform.position == cropHoverPoint.transform.position)
+                {
+                    isAtCropHoverPosition = true;
+                }
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@ TagManager:
   - Dial_PinSlower
   - Kino
   - Crops
+  - CropBotBody
   layers:
   - Default
   - TransparentFX

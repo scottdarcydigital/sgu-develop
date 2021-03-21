@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject Player;
     public GameObject Kino;
+    public GameObject CropBot;
     public string PlayerLocation;
+    public string CropBotLocation;
     public string KinoLocation;
 
     public GameObject puddle;
@@ -281,6 +283,30 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Kino Location is NOT DEFINED");
         }
+
+        if (PlayerLocation == CropBotLocation || KinoLocation == CropBotLocation)
+        {
+            CropBot.SetActive(true);
+        }
+
+        if (CropBot != null)
+        {
+            // only perform this is the player is active EG: Kino logic.
+            if (CropBot.activeSelf)
+            {
+                CropBotLocation = scene.name;
+                Debug.Log("CropBotLocationis : " + CropBotLocation);
+            }
+            else
+            {
+                Debug.Log("CropBot Location is NOT ACTIVE");
+            }
+        }
+        else
+        {
+            Debug.Log("Crop Bot Location is NOT DEFINED");
+        }
+
     } 
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)

@@ -10,6 +10,7 @@ public class Puddle : MonoBehaviour
     // you need to be able to talk to the game manager here...?
     private GameManager kinoLocation;
     private GameManager playerLocation;
+    private GameManager cropBotLocation;
     private GameManager startCountdownClock;
 
     // talk to the remote script, but only when the puddle is active as not to cross wires...
@@ -24,6 +25,7 @@ public class Puddle : MonoBehaviour
     public string gateLocation;
     public string gatePrveiousLocation;
     public Transform spawnLocation;
+    public Transform CropBotPuddleLocation;
 
     [SerializeField] public List<GameObject> Address_Shev_Arr;
     [SerializeField] public List<GameObject> Shevrons;
@@ -49,6 +51,7 @@ public class Puddle : MonoBehaviour
         {
             Debug.Log("WOOOOO z less");
             spawnLocation.position = new Vector3(1.02f, 1.9f, 2.5f);
+            CropBotPuddleLocation.position = new Vector3(1.0f, 1.8f, -5.0f);
             Gate.transform.Rotate(0, 0, 180);
             this.transform.Rotate(0, 0, 180);
             GateRotated = true;
@@ -58,6 +61,7 @@ public class Puddle : MonoBehaviour
         {
             Debug.Log("WOOOOO z more");
             spawnLocation.position = new Vector3(1.02f, 1.9f, -2.5f);
+            CropBotPuddleLocation.position = new Vector3(1.0f, 1.8f, 5.0f);
             Gate.transform.Rotate(0, 0, 180);
             this.transform.Rotate(0, 0, 180);
             GateRotated = false;
@@ -161,6 +165,7 @@ public class Puddle : MonoBehaviour
     {
         kinoLocation = FindObjectOfType<GameManager>();
         playerLocation = FindObjectOfType<GameManager>();
+        cropBotLocation = FindObjectOfType<GameManager>();
         startCountdownClock = FindObjectOfType<GameManager>();
 
         remoteScript = FindObjectOfType<Remote>();
@@ -418,7 +423,8 @@ public class Puddle : MonoBehaviour
             if (kinoLocation.KinoLocation != Planet_Destination)
             {
                 Kino.SetActive(false);
-            } else if (kinoLocation.KinoLocation == Planet_Destination)
+            }
+            else if (kinoLocation.KinoLocation == Planet_Destination)
             {
                 Kino.SetActive(true);
             }
@@ -473,6 +479,15 @@ public class Puddle : MonoBehaviour
 
         }
 
+        if (other.tag == "CropBotBody")
+        {
+            // only set the body to false and the parents collision to false as the objects location still needs to move into the other level somewhat
+            other.transform.parent.GetComponent<SphereCollider>().enabled = false;
+            other.transform.gameObject.SetActive(false);
+
+            // IMPORTANT : You will need to use the puddle location in the Cropot.cs script for the spawn location of this bot as it shouldnt conflict or be equal to the spawn location of the player or the kino. 
+            cropBotLocation.CropBotLocation = Planet_Destination;
+        }
     }
 }
 
