@@ -9,6 +9,7 @@ TagManager:
   - Dail_PinSlow
   - Dial_PinSlower
   - Kino
+  - Crops
   layers:
   - Default
   - TransparentFX

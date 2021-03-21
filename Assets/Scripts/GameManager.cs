@@ -6,6 +6,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
+    public int Inventory_Crops = 0;
+
     public GameObject Player;
     public GameObject Kino;
     public string PlayerLocation;
