@@ -11,6 +11,15 @@ TagManager:
   - Kino
   - Crops
   - CropBotBody
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+  - PlayerProximity
+  - Water
+  - Ore
+=======
+>>>>>>> 055aed353f99e8a518a1fa7b656cab26511b91ba
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

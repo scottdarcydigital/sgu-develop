@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
 
     public int Inventory_Crops = 0;
+    public int Inventory_Water = 0; // not currently used, need to get the bot for it working first...
+    public int Inventory_Ore = 0; // not currently used, need to get the bot for it working first...
 
     public GameObject Player;
     public GameObject Kino;
@@ -26,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public bool isCounting = false;
 
-   // public int countDownTimeRecord;
+    // public int countDownTimeRecord;
 
     // public bool gateManuallyShutDown = false;
 
