@@ -55,6 +55,9 @@ MonoBehaviour:
   kinoScript: {fileID: 0}
   PlayerScript: {fileID: 0}
   player_RB: {fileID: 0}
+  Button_1: {fileID: 0}
+  Button_2: {fileID: 0}
+  Button_3: {fileID: 0}
 --- !u!114 &6320001488541319788
 MonoBehaviour:
   m_ObjectHideFlags: 0

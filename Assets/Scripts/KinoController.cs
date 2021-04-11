@@ -47,7 +47,7 @@ public class KinoController : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;   // reverses camera angle by 90 degrees on movement of gameobject 
 
         Debug.Log("targetAngle : 2" + direction.magnitude);
 

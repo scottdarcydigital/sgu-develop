@@ -10,6 +10,12 @@ TagManager:
   - Dial_PinSlower
   - Kino
   - Crops
+  - CropBotBody
+  - PlayerProximity
+  - Water
+  - Ore
+  - LevelSafe
+  - LevelDanger
   layers:
   - Default
   - TransparentFX
