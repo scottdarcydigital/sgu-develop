@@ -44,7 +44,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
-  m_Intensity: 517253.56
+  m_Intensity: 636.61975
   m_Range: 42.780205
   m_SpotAngle: 64.982666
   m_InnerSpotAngle: 4
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 6500000
+  m_Intensity: 8000
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -217,13 +217,14 @@ GameObject:
   - component: {fileID: 8666872997971861960}
   - component: {fileID: 8666872997971861967}
   - component: {fileID: 8666872997971861963}
+  - component: {fileID: 997976159}
   m_Layer: 0
   m_Name: EventHorizonNEW210221
   m_TagString: Puddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8666872997971861962
 Transform:
   m_ObjectHideFlags: 0
@@ -316,10 +317,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1f6e01f9be37d4fb2d80376b62cf60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShevronsLocked: {fileID: 4098644624709672498, guid: 5cae869dd4cb0304081333eb518ecba2, type: 3}
-  Planet_Destination2: 
-  yep: 1
-  Sym_1: {fileID: 0}
+  remoteScript: {fileID: 0}
+  Gate: {fileID: 0}
+  GateRotated: 0
+  Planet_Destination: AddressThress
+  gateLocation: 
+  gatePrveiousLocation: 
+  spawnLocation: {fileID: 0}
+  CropBotPuddleLocation: {fileID: 0}
   Address_Shev_Arr:
   - {fileID: 0}
   - {fileID: 0}
@@ -357,6 +362,21 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  Shevrons: []
+  Player: {fileID: 0}
+  Kino: {fileID: 0}
+--- !u!114 &997976159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8666872997971861966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76cf301c9cebd5e489c4e143e116d267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8666872998320359257
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,7 +421,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 47746.48
+  m_Intensity: 477.4648
   m_Range: 3.9712589
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -470,7 +490,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 600000
+  m_Intensity: 6000
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -605,7 +625,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 47746.48
+  m_Intensity: 477.4648
   m_Range: 21.217424
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -674,7 +694,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 600000
+  m_Intensity: 6000
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -809,7 +829,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.7783019, g: 1, b: 0.99537295, a: 1}
-  m_Intensity: 517253.56
+  m_Intensity: 636.61975
   m_Range: 531.76
   m_SpotAngle: 87.7
   m_InnerSpotAngle: 1
@@ -878,7 +898,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 6500000
+  m_Intensity: 8000
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -1013,7 +1033,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.7783019, g: 1, b: 0.99537295, a: 1}
-  m_Intensity: 517253.56
+  m_Intensity: 636.61975
   m_Range: 42.780205
   m_SpotAngle: 66.07303
   m_InnerSpotAngle: 4
@@ -1082,7 +1102,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 6500000
+  m_Intensity: 8000
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 84.274765
@@ -1508,7 +1528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2575152105200184150, guid: 606a07494b9c39446939abd3f2cad81f, type: 3}
       propertyPath: m_Intensity
-      value: 15915.494
+      value: 159.15494
       objectReference: {fileID: 0}
     - target: {fileID: 2575152105200184150, guid: 606a07494b9c39446939abd3f2cad81f, type: 3}
       propertyPath: m_Color.r
@@ -1540,7 +1560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2575152105200184151, guid: 606a07494b9c39446939abd3f2cad81f, type: 3}
       propertyPath: m_Intensity
-      value: 200000
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 2575152105200184153, guid: 606a07494b9c39446939abd3f2cad81f, type: 3}
       propertyPath: m_LocalPosition.y
