@@ -143,12 +143,12 @@ public class Remote : MonoBehaviour
 
         // bad way of doing this!
         //Time.timeScale = 0f;
+        remoteMenuUI.SetActive(true);
 
         //taken from FirstPersonAIO.cs
         PlayerScript.enableCameraMovement = false;
         PlayerScript.playerCanMove = false;
 
-        remoteMenuUI.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
@@ -186,12 +186,12 @@ public class Remote : MonoBehaviour
     {
         // bad way of doing this!
         //Time.timeScale = 1f;
+        remoteMenuUI.SetActive(false);
 
         //taken from FirstPersonAIO.cs
         PlayerScript.enableCameraMovement = true;
         PlayerScript.playerCanMove = true;
 
-        remoteMenuUI.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
