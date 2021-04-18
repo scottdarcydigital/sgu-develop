@@ -1,0 +1,13 @@
+# Blender MTL File: 'StairsFinal_SP.blend'
+# Material Count: 1
+
+newmtl Material.003
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.545722 0.800000 0.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\Unity Projects\HDPRSandbox\SGU2020HDRP_Refactoring_020320_prefab_fixes\Assets\Textures\stairs_front_plateCover.png
