@@ -234,7 +234,7 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 0
       supportFabricConvolution: 0
-      maxDirectionalLightsOnScreen: 16
+      maxDirectionalLightsOnScreen: 8
       maxPunctualLightsOnScreen: 512
       maxAreaLightsOnScreen: 64
       maxEnvLightsOnScreen: 64
@@ -330,7 +330,7 @@ MonoBehaviour:
         m_Id: With3Levels
     lightingQualitySettings:
       AOStepCount: 040000000600000010000000
-      AOFullRes: 000001
+      AOFullRes: 000000
       AOMaximumRadiusPixels: 200000002800000050000000
       AOBilateralUpsample: 000101
       AODirectionCount: 010000000200000004000000
