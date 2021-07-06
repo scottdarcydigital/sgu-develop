@@ -44,6 +44,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccffea246407cd6498a3647d102c741c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Inventory_Crops: 0
+  Inventory_Water: 0
+  Inventory_Ore: 0
+  Player: {fileID: 0}
+  Kino: {fileID: 0}
+  CropBot: {fileID: 0}
+  PlayerLocation: null
+  CropBotLocation: null
+  KinoLocation: null
+  puddle: {fileID: 0}
+  GameOverScreen: {fileID: 0}
+  PlayerScript: {fileID: 0}
+  countDownTime: 10
+  TimeIsLow: 0
+  isCounting: 0
+  gateTimeOut: {fileID: 0}
+  Count_MilliSecond: 0
+  Count_TenMilliSecond: 0
+  Count_Second: 0
+  Count_TenSecond: 0
+  Count_Min: 0
+  Count_TenMin: 0
 --- !u!114 &5387424628250865809
 MonoBehaviour:
   m_ObjectHideFlags: 0

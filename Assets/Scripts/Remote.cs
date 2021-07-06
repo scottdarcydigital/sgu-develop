@@ -154,6 +154,9 @@ public class Remote : MonoBehaviour
 
         // manage planets within range
 
+        // Handles which addresses should show if the player is at one of the following locations already, 
+        // preventing them from Dialing thier current location from the menu
+
         // ADD ONE
         if (scene.name == "Prefab_GateRoom")
         {

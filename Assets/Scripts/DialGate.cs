@@ -442,9 +442,16 @@ public class DialGate : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
 
+            Debug.Log("06.07 " + GateAddress_Arr[0]);
+            Debug.Log("06.07 " + GateAddress_Arr[1]);
+            Debug.Log("06.07 " + GateAddress_Arr[2]);
+            Debug.Log("06.07 " + GateAddress_Arr[3]);
+            Debug.Log("06.07 " + GateAddress_Arr[4]);
+            Debug.Log("06.07 " + GateAddress_Arr[5]);
+            Debug.Log("06.07 " + GateAddress_Arr[6]);
+
             // TODO // run a check to see if the address entered is your current location...if so throw a function...
 
-            //  THESE IF CHECKS THAT HANDLE THE DIALED LOCATION ARE NOW HANDLED BY THE PUDDLE.CS SCRIPT
             if (
                 GateAddress_Arr.Contains(ArchPin_Arr[0]) &&
                 GateAddress_Arr.Contains(ArchPin_Arr[1]) &&
@@ -455,9 +462,8 @@ public class DialGate : MonoBehaviour
                 GateAddress_Arr.Contains(ArchPin_Arr[6]) 
                 )
             {
-                AttemptingToDialLocation = "Prefab_GateRoom";
+                AttemptingToDialLocation = "Prefab_TemplateLevel_1";
             }
-           
 
             //  AddressTwo Check
             if (
@@ -470,7 +476,7 @@ public class DialGate : MonoBehaviour
                 GateAddress_Arr.Contains(ArchPin_Arr[7])
                 )
             {
-                AttemptingToDialLocation = "GateRoom_1copy";
+                AttemptingToDialLocation = "Prefab_TemplateLevel_2";
             }
 
             //  AddressDestiny Check
@@ -484,7 +490,7 @@ public class DialGate : MonoBehaviour
                 GateAddress_Arr.Contains(ArchPin_Arr[35])
                 )
             {
-                AttemptingToDialLocation = "AddressThree";
+                AttemptingToDialLocation = "Prefab_TemplateLevel_3";
             }
 
             // if you have not selected enough symbols throw a gate failed function and clear the arrays just selected

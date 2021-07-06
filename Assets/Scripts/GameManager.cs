@@ -248,7 +248,7 @@ public class GameManager : MonoBehaviour
 
     void setLocationData(Scene scene)
     {
-        // if the assigned player gameobject is in the scene then...
+        // if the assigned player gameobject is NOT in the scene then...
         if (Player != null) 
         {
             // only perform this is the player is active EG: Kino logic.
@@ -284,16 +284,19 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("Kino Location is NOT DEFINED");
-        }
-
-        if (PlayerLocation == CropBotLocation || KinoLocation == CropBotLocation)
-        {
-            CropBot.SetActive(true);
-        }
+        }      
 
         if (CropBot != null)
         {
+            Debug.Log("Crop Bot Location is HERE");
+            CropBotLocation = scene.name;
+
             // only perform this is the player is active EG: Kino logic.
+            if (PlayerLocation == CropBotLocation)
+            {
+                CropBot.SetActive(true);
+            }
+
             if (CropBot.activeSelf)
             {
                 CropBotLocation = scene.name;

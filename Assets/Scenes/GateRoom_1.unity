@@ -5918,7 +5918,14 @@ MonoBehaviour:
   playerInRemoteRange: 0
   kinoCam: {fileID: 1456709308}
   PlayerCam: {fileID: 20724644690678397}
+  Kino: {fileID: 0}
   Player: {fileID: 1743903375912155}
+  kinoScript: {fileID: 0}
+  PlayerScript: {fileID: 0}
+  player_RB: {fileID: 0}
+  Button_1: {fileID: 0}
+  Button_2: {fileID: 0}
+  Button_3: {fileID: 0}
 --- !u!1001 &271182387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55207,11 +55214,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5028672109900677874, guid: 552394d6396c4bb4a8cf2b4dbda8caf7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000015983069
+      value: 0.00000001598307
       objectReference: {fileID: 0}
     - target: {fileID: 5028672109900677874, guid: 552394d6396c4bb4a8cf2b4dbda8caf7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000063718963
+      value: -0.000000006371897
       objectReference: {fileID: 0}
     - target: {fileID: 5028672110030962363, guid: 552394d6396c4bb4a8cf2b4dbda8caf7, type: 3}
       propertyPath: m_LocalRotation.y
@@ -55220,6 +55227,14 @@ PrefabInstance:
     - target: {fileID: 5028672110030962363, guid: 552394d6396c4bb4a8cf2b4dbda8caf7, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.000000010378745
+      objectReference: {fileID: 0}
+    - target: {fileID: 5028672111703955635, guid: 552394d6396c4bb4a8cf2b4dbda8caf7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1e-45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5028672111703955635, guid: 552394d6396c4bb4a8cf2b4dbda8caf7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8226140856422828479, guid: 552394d6396c4bb4a8cf2b4dbda8caf7, type: 3}
       propertyPath: Player

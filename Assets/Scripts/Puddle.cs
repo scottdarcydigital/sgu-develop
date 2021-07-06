@@ -87,8 +87,10 @@ public class Puddle : MonoBehaviour
     void OnEnable()
     {
         Debug.Log("OnEnable called");
+        Debug.Log("PUDDLE ACTIVE");
         SceneManager.sceneLoaded += OnSceneLoaded;
         Invoke("setToTrue", 0.01f);
+        Invoke("setPlanetDestination", 0.01f);
     }
 
     private void OnDisable()
@@ -102,10 +104,9 @@ public class Puddle : MonoBehaviour
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
-        Debug.Log("PUDDLE ACTIVE");
 
-        // when the scene changes to a new one, update the gates name to one which is the current scene. 
-        gateLocation = scene.name;
+        // when the scene changes to a new one, update the gates Planet_Destination to your previous destination, ensuring you can travel back.
+        Planet_Destination = gatePrveiousLocation;
 
 
 
@@ -123,11 +124,12 @@ public class Puddle : MonoBehaviour
             i++;
             if (i == 36)
             {
-                Planet_Destination = gatePrveiousLocation;
+                // Planet_Destination = gatePrveiousLocation;
+              //  Planet_Destination = scene.name;
             }
         }
 
-        if (Planet_Destination == "Prefab_GateRoom")
+        if (Planet_Destination == "Prefab_TemplateLevel_1")
         {
             Address_Shev_Arr[0].SetActive(true);
             Address_Shev_Arr[1].SetActive(true);
@@ -136,7 +138,7 @@ public class Puddle : MonoBehaviour
             Address_Shev_Arr[4].SetActive(true);
             Address_Shev_Arr[5].SetActive(true);
             Address_Shev_Arr[6].SetActive(true);
-        } else if (Planet_Destination == "GateRoom_1copy")
+        } else if (Planet_Destination == "Prefab_TemplateLevel_2")
         {
             Address_Shev_Arr[1].SetActive(true);
             Address_Shev_Arr[2].SetActive(true);
@@ -146,7 +148,7 @@ public class Puddle : MonoBehaviour
             Address_Shev_Arr[6].SetActive(true);
             Address_Shev_Arr[7].SetActive(true);
         }
-        else if (Planet_Destination == "AddressThree")
+        else if (Planet_Destination == "Prefab_TemplateLevel_3")
         {
             Address_Shev_Arr[29].SetActive(true);
             Address_Shev_Arr[30].SetActive(true);
@@ -235,44 +237,7 @@ public class Puddle : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene();
 
-        if (
-            Address_Shev_Arr[0].activeSelf &&
-            Address_Shev_Arr[1].activeSelf &&
-            Address_Shev_Arr[2].activeSelf &&
-            Address_Shev_Arr[3].activeSelf &&
-            Address_Shev_Arr[4].activeSelf &&
-            Address_Shev_Arr[5].activeSelf &&
-            Address_Shev_Arr[6].activeSelf
-            )
-        {
-            Planet_Destination = "Prefab_GateRoom";
-        }
-
-        if (
-            Address_Shev_Arr[1].activeSelf &&
-            Address_Shev_Arr[2].activeSelf &&
-            Address_Shev_Arr[3].activeSelf &&
-            Address_Shev_Arr[4].activeSelf &&
-            Address_Shev_Arr[5].activeSelf &&
-            Address_Shev_Arr[6].activeSelf &&
-            Address_Shev_Arr[7].activeSelf
-            )
-        {
-            Planet_Destination = "GateRoom_1copy";
-        }
-
-        if (
-            Address_Shev_Arr[29].activeSelf &&
-            Address_Shev_Arr[30].activeSelf &&
-            Address_Shev_Arr[31].activeSelf &&
-            Address_Shev_Arr[32].activeSelf &&
-            Address_Shev_Arr[33].activeSelf &&
-            Address_Shev_Arr[34].activeSelf &&
-            Address_Shev_Arr[35].activeSelf
-            )
-        {
-            Planet_Destination = "AddressThree";
-        }
+        
 
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -398,6 +363,49 @@ public class Puddle : MonoBehaviour
                 */
 
             }
+        }
+    }
+
+    void setPlanetDestination()
+    {
+        Debug.Log("setPlanetDestination()");
+        if (
+            Address_Shev_Arr[0].activeSelf &&
+            Address_Shev_Arr[1].activeSelf &&
+            Address_Shev_Arr[2].activeSelf &&
+            Address_Shev_Arr[3].activeSelf &&
+            Address_Shev_Arr[4].activeSelf &&
+            Address_Shev_Arr[5].activeSelf &&
+            Address_Shev_Arr[6].activeSelf
+            )
+        {
+            Planet_Destination = "Prefab_TemplateLevel_1";
+        }
+
+        if (
+            Address_Shev_Arr[1].activeSelf &&
+            Address_Shev_Arr[2].activeSelf &&
+            Address_Shev_Arr[3].activeSelf &&
+            Address_Shev_Arr[4].activeSelf &&
+            Address_Shev_Arr[5].activeSelf &&
+            Address_Shev_Arr[6].activeSelf &&
+            Address_Shev_Arr[7].activeSelf
+            )
+        {
+            Planet_Destination = "Prefab_TemplateLevel_2";
+        }
+
+        if (
+            Address_Shev_Arr[29].activeSelf &&
+            Address_Shev_Arr[30].activeSelf &&
+            Address_Shev_Arr[31].activeSelf &&
+            Address_Shev_Arr[32].activeSelf &&
+            Address_Shev_Arr[33].activeSelf &&
+            Address_Shev_Arr[34].activeSelf &&
+            Address_Shev_Arr[35].activeSelf
+            )
+        {
+            Planet_Destination = "Prefab_TemplateLevel_3";
         }
     }
 

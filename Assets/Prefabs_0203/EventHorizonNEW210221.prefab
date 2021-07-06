@@ -320,7 +320,7 @@ MonoBehaviour:
   remoteScript: {fileID: 0}
   Gate: {fileID: 0}
   GateRotated: 0
-  Planet_Destination: AddressThress
+  Planet_Destination: AddressThree
   gateLocation: 
   gatePrveiousLocation: 
   spawnLocation: {fileID: 0}
