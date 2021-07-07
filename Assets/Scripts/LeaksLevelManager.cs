@@ -5,17 +5,6 @@ using UnityEngine;
 
 public class LeaksLevelManager : MonoBehaviour
 {
-
-    // will need a list of all the lights in the scene, change these to red
-    // will need an audio source to play the alarms
-
-    // will need a script to change the player exposer up and down on the post
-    // processing in order to simulate flashig and dimming lights
-
-    // another audio source for the soundtrack of the level
-
-    // later on you will need a timer for a game over screen 
-
     public List<Light> TuskLights = new List<Light>();
     public List<Light> DoorLights = new List<Light>();
     public List<Light> Corridoor_FloorLights = new List<Light>();
@@ -24,7 +13,6 @@ public class LeaksLevelManager : MonoBehaviour
     public List<GameObject> Gameobject_BalconyUnderLights = new List<GameObject>();
     public List<GameObject> Gameobject_TuskLights = new List<GameObject>();
     public List<GameObject> Gameobject_StairsLights = new List<GameObject>();
-
 
     public List<Light> Lights_To_Disable = new List<Light>();
 
@@ -50,7 +38,6 @@ public class LeaksLevelManager : MonoBehaviour
 
     public float flashInterval;
 
-    //public Light MainGateRoomLight;
     public List<Light> MainGateRoomLight_Safe = new List<Light>();
     public List<Light> MainGateRoomLight = new List<Light>();
     public List<Light> TuskGateRoomLight = new List<Light>();
@@ -64,40 +51,23 @@ public class LeaksLevelManager : MonoBehaviour
 
     public List<GameObject> listOfChildren = new List<GameObject>();
 
-
-    // Start is called before the first frame update
     void Start()
     {
         LevelInDanger();
-        // SafeLights = 
-        // SafeLights = GameObject.FindGameObjectsWithTag("LevelSafe");
         DangerLights = GameObject.FindGameObjectsWithTag("LevelDanger");
-        //Corridoors_Script = FindObjectOfType<CorridoorLighting>();
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-
-        // MainGateRoomLight.intensity = Mathf.PingPong(Time.time, 8);
-        // MainGateRoomLight.GetComponent<Light>().enabled = false;
-
         if (IsoIncrement)
         {
-            // Debug.Log(IsoIncrement + " : IsoIncrement");
-            // PlayerCameraISO.GetComponent<HDAdditionalCameraData>().physicalParameters.iso++;
             if (PlayerCameraISO.GetComponent<HDAdditionalCameraData>().physicalParameters.iso >= 200)
             {
                 IsoIncrement = false;
             }
-
         }
         if (!IsoIncrement)
         {
-            // Debug.Log(IsoIncrement + " : IsoIncrement");
-            // PlayerCameraISO.GetComponent<HDAdditionalCameraData>().physicalParameters.iso--;
             if (PlayerCameraISO.GetComponent<HDAdditionalCameraData>().physicalParameters.iso <= 10)
             {
                 IsoIncrement = true;
@@ -108,8 +78,8 @@ public class LeaksLevelManager : MonoBehaviour
         {
             LevelSafe();
         } 
-
     }
+
     void LevelInDanger()
     {
         foreach (GameObject child in SafeLights)
@@ -121,8 +91,7 @@ public class LeaksLevelManager : MonoBehaviour
         {
             child.SetActive(true);
         }
-
-        Debug.Log("LEVEL NOT SAFE");
+        
         isoValue = PlayerCameraISO.GetComponent<HDAdditionalCameraData>().physicalParameters.iso;
 
         foreach (GameObject Underlights in Gameobject_BalconyUnderLights)
@@ -172,16 +141,8 @@ public class LeaksLevelManager : MonoBehaviour
         {
             MainSafeLights.enabled = false;
         }
-
-        // Lights_To_Disable[0].enabled = false;
-        //Lights_To_Disable[1].enabled = false;
-        // Lights_To_Disable[2].enabled = false;
-        // Lights_To_Disable[3].enabled = false;
-        // Lights_To_Disable[4].enabled = false;
         InvokeRepeating("LightFlashing", 0.0f, flashInterval);
         InvokeRepeating("TuskLightsFlashing", 0.0f, flashInterval);
-
-       // Corridoors_Script.Invoke("DefaultLighting", 0.0f);
     }
 
     void LevelSafe()
@@ -195,8 +156,6 @@ public class LeaksLevelManager : MonoBehaviour
         {
             child.SetActive(false);
         }
-
-        Debug.Log("LEVEL SAFE");
 
         foreach (GameObject Underlights in Gameobject_BalconyUnderLights)
         {
@@ -250,12 +209,10 @@ public class LeaksLevelManager : MonoBehaviour
         CancelInvoke("LightFlashing");
 
         LevelSolved = false; // ensuring the update funtion only runs this once
-
     }
 
     void TuskLightsFlashing()
     {
-        Debug.Log("TuskLightsFlashing");
         if (TuskLightIncrement)
         {
             TuskLightValue += 0.1f;
@@ -282,8 +239,6 @@ public class LeaksLevelManager : MonoBehaviour
         if (MainLightIncrement)
         {
             MainLightValue += 0.1f;
-         //   MainLightValue =+ MainLightValueIncrement;
-            Debug.Log(MainLightIncrement + " : MainLightIncrement");
             MainGateRoomLight[0].GetComponent<HDAdditionalLightData>().intensity = MainLightValue;
             MainGateRoomLight[1].GetComponent<HDAdditionalLightData>().intensity = MainLightValue;
             if (MainGateRoomLight[0].GetComponent<HDAdditionalLightData>().intensity >= MainLightMaxValue)
@@ -295,8 +250,6 @@ public class LeaksLevelManager : MonoBehaviour
         if (!MainLightIncrement)
         {
             MainLightValue -= 0.1f;
-            //   MainLightValue =+ MainLightValueIncrement;
-            Debug.Log(MainLightIncrement + " : MainLightIncrement");
             MainGateRoomLight[0].GetComponent<HDAdditionalLightData>().intensity = MainLightValue;
             MainGateRoomLight[1].GetComponent<HDAdditionalLightData>().intensity = MainLightValue;
             if (MainGateRoomLight[0].GetComponent<HDAdditionalLightData>().intensity <= 20)

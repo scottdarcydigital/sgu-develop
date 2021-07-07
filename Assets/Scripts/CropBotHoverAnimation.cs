@@ -12,10 +12,8 @@ public class CropBotHoverAnimation : MonoBehaviour
     
     public CropBot CropBotVariables;
 
-    // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("DEBUG BOT ACTIVE");
         CropBotVariables = FindObjectOfType<CropBot>();
     }
 
@@ -38,11 +36,8 @@ public class CropBotHoverAnimation : MonoBehaviour
             }
         }
     }
-
-    // Update is called once per frame
     void Update()
     {
-        // only play the hover animation if the bot is not currently farming
         if (!CropBotVariables.isFarming)
         {
             hoverIdol();

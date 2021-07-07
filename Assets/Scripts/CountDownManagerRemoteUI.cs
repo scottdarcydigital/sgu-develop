@@ -17,14 +17,12 @@ public class CountDownManagerRemoteUI : MonoBehaviour
     public List<Sprite> CountDownMaterials;
     public List<Sprite> CountDownMaterialsLowTime;
 
-
     public int materialCount_MilliSecond;
     public int materialCount_MilliTenSecond;
     public int materialCount_Second;
     public int materialCount_TenSecond;
     public int materialCount_Min;
     public int materialCount_TenMin;
-
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +34,6 @@ public class CountDownManagerRemoteUI : MonoBehaviour
     {
         if (countDownTime.countDownTime > 10000)
         {
-
             MilliSeconds.GetComponent<Image>().sprite = CountDownMaterials[countDownTime.Count_MilliSecond];
             MilliTenSeconds.GetComponent<Image>().sprite = CountDownMaterials[countDownTime.Count_TenMilliSecond];
             Seconds.GetComponent<Image>().sprite = CountDownMaterials[countDownTime.Count_Second];
@@ -47,7 +44,6 @@ public class CountDownManagerRemoteUI : MonoBehaviour
 
         if (countDownTime.countDownTime <= 10000)
         {
-
             MilliSeconds.GetComponent<Image>().sprite = CountDownMaterialsLowTime[countDownTime.Count_MilliSecond];
             MilliTenSeconds.GetComponent<Image>().sprite = CountDownMaterialsLowTime[countDownTime.Count_TenMilliSecond];
             Seconds.GetComponent<Image>().sprite = CountDownMaterialsLowTime[countDownTime.Count_Second];

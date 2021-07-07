@@ -11,17 +11,7 @@ public class PlayerState : MonoBehaviour
     {
         if (LastSceneLoaded.previousLocation != "null")
         {
-            Debug.Log("NOT NULL");
             Player.transform.position = GateArrivalLocation.transform.position;
-        } else
-        {
-            Debug.Log("IS NULL");
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -32,21 +32,13 @@ public class WaterBotHoverAnimation : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        // !!! IMPORTANT Change this later to not use the find function and maybe be something like 
-        //  cropBotThis.GetComponent<CropBot>().harvested_Crops = 0;
         WaterBotVariables = FindObjectOfType<WaterBot>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // only play the hover animation if the bot is not currently farming
-       // if (!WaterBotVariables.isFarming)
-       // {
-            hoverIdol();
-       // }
+        hoverIdol();
     }
 }

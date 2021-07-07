@@ -25,11 +25,8 @@ public class KinoController : MonoBehaviour
     private float activeStrifeSpeed;
     private float activeHoverSpeed;
 
-
-
     // accelleration speed
     private float forward_acc = 2.5f, strife_acc = 2f, hover_acc = 2f;
-
 
     // Start is called before the first frame update
     void Start()
@@ -40,56 +37,29 @@ public class KinoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("targetAngle : 1" );
-
-
-
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;   // reverses camera angle by 90 degrees on movement of gameobject 
 
-        Debug.Log("targetAngle : 2" + direction.magnitude);
-
-
-       // if (direction.magnitude >= 0.1f && !Player.activeSelf)
         if (direction.magnitude >= 0.1f)
         {
-            Debug.Log("targetAngle : 2");
-
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;  // change move direction to the direction the camera is facing
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
-
-            // controller.Move(direction.normalized * speed * Time.deltaTime);
-
-            Debug.Log("targetAngle : " + targetAngle);
-            Debug.Log("moveDir : " + moveDir);
         } else
         {
             // when the kino stops moving save its location, this is also covered in the .C toggle on the remote.cs script
             Invoke("SaveKinoLocation.saveKinoLocation()", 0.5f);    // only save position hald a second after stopping
         }
+        activeForwardSpeed = Mathf.Lerp(activeForwardSpeed, Input.GetAxisRaw("Vertical") * forwardSpeed, forward_acc * Time.deltaTime);
+        activeStrifeSpeed = Mathf.Lerp(activeStrifeSpeed, Input.GetAxisRaw("Horizontal") * strifeSpeed, strife_acc * Time.deltaTime);
+        activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, Input.GetAxisRaw("Hover") * hoverSpeed, hover_acc * Time.deltaTime);
 
-        // Debug.Log("H  : " + horizontal + "D.x : " + direction.x );
-        // Debug.Log("V  : " + vertical + "D.y : " + direction.y);
-
-
-
-        //if (!Player.activeSelf)
-       // {
-            activeForwardSpeed = Mathf.Lerp(activeForwardSpeed, Input.GetAxisRaw("Vertical") * forwardSpeed, forward_acc * Time.deltaTime);
-            activeStrifeSpeed = Mathf.Lerp(activeStrifeSpeed, Input.GetAxisRaw("Horizontal") * strifeSpeed, strife_acc * Time.deltaTime);
-            activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, Input.GetAxisRaw("Hover") * hoverSpeed, hover_acc * Time.deltaTime);
-
-            transform.position += transform.forward * activeForwardSpeed * Time.deltaTime;
-            transform.position += transform.right * activeStrifeSpeed * Time.deltaTime;
-            transform.position += transform.up * activeHoverSpeed * Time.deltaTime;
-        //}
-
-
+        transform.position += transform.forward * activeForwardSpeed * Time.deltaTime;
+        transform.position += transform.right * activeStrifeSpeed * Time.deltaTime;
+        transform.position += transform.up * activeHoverSpeed * Time.deltaTime;
     }
 }

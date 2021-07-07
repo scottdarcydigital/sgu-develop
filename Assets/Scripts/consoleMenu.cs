@@ -22,9 +22,6 @@ public class consoleMenu : MonoBehaviour
     [SerializeField] private GameObject S22;
     [SerializeField] private GameObject S20;
 
-    // Symbol_Colision with Dial Pin
-    //[SerializeField] private GameObject S16Col_w_DialPin;
-
     // Symbol_PinFire
     [SerializeField] private GameObject DialPin;
 
@@ -40,7 +37,6 @@ public class consoleMenu : MonoBehaviour
     public bool S22_pin2 = false;
 
     public float xSpeed;
-
     public float LeftSpeed;
     public float RightSpeed;
 
@@ -51,37 +47,16 @@ public class consoleMenu : MonoBehaviour
 
     private void Update()
     {
-
-        
-
         if (DialNow == true)
         {
             // 0. Rotate gate & Stop
             Gate.transform.Rotate(Vector3.left * (xSpeed * Time.deltaTime));
 
-            Debug.Log("ROT1 : A : :" + Gate.transform.rotation.eulerAngles.x);
-            // Debug.Log("ROT1 : B : :" + Rot1.transform.rotation.normalized.x);
-            // Debug.Log("ROT1 : C : :" + Rot1.transform.rotation.x);
-
-            // DAIL 16
-            //if (S16Col_w_DialPin.transform.position == DialPin.transform.position)      Change this to a collision detect with the Symbol_Colision with Dial Pin
             if (Gate.transform.eulerAngles.x > 39 && Gate.transform.eulerAngles.x < 40)
             {
-                Debug.Log("HIT-2 ****************************************************");
               xSpeed = 0.0f;
               Symbol16Pin1.transform.position = Vector3.MoveTowards(Symbol16Pin1.transform.position, DialPin.transform.position, 0.05f);
               Symbol16Pin2.transform.position = Vector3.MoveTowards(Symbol16Pin2.transform.position, DialPin.transform.position, 0.03f);
-                
-                if (S16_pin1 == false || S16_pin2 == false)
-                {
-                    // Debug.Log("HIT-2");
-                  //  xSpeed = 0.0f;
-                   // Symbol16Pin1.transform.position = Vector3.MoveTowards(Symbol16Pin1.transform.position, DialPin.transform.position, 0.05f);
-                    //Symbol16Pin2.transform.position = Vector3.MoveTowards(Symbol16Pin2.transform.position, DialPin.transform.position, 0.03f);
-                }
-                
-
-                
 
                 if (Symbol16Pin1.transform.position == DialPin.transform.position)
                 {
@@ -89,9 +64,6 @@ public class consoleMenu : MonoBehaviour
                     Symbol16Pin1.transform.position = Symbol16Pin1.transform.position;
                     S16.SetActive(true);
                 }
-                
-
-                
 
                 if (Symbol16Pin2.transform.position == DialPin.transform.position)
                 {
@@ -102,35 +74,32 @@ public class consoleMenu : MonoBehaviour
                 
             }
         }
-        
-                //DAIL 22
-                if (Gate.transform.eulerAngles.x > 333 && Gate.transform.eulerAngles.x < 334)
-                {
 
-                    if (S22_pin1 == false || S22_pin2 == false)
-                    {
-                        xSpeed = 0.0f;
-                        Symbol22Pin1.transform.position = Vector3.MoveTowards(Symbol22Pin1.transform.position, DialPin.transform.position, 0.05f);
-                        Symbol22Pin2.transform.position = Vector3.MoveTowards(Symbol22Pin2.transform.position, DialPin.transform.position, 0.03f);
-                    }
+        if (Gate.transform.eulerAngles.x > 333 && Gate.transform.eulerAngles.x < 334)
+        {
 
-                    if (Symbol22Pin1.transform.position == DialPin.transform.position)
-                    {
-                        S22_pin1 = true;
-                        Symbol22Pin1.transform.position = Symbol22Pin1.transform.position;
-                        S22.SetActive(true);
-                    }
+            if (S22_pin1 == false || S22_pin2 == false)
+            {
+                xSpeed = 0.0f;
+                Symbol22Pin1.transform.position = Vector3.MoveTowards(Symbol22Pin1.transform.position, DialPin.transform.position, 0.05f);
+                Symbol22Pin2.transform.position = Vector3.MoveTowards(Symbol22Pin2.transform.position, DialPin.transform.position, 0.03f);
+            }
 
-                    if (Symbol22Pin2.transform.position == DialPin.transform.position)
-                    {
-                        S22_pin2 = true;
-                        Symbol22Pin2.transform.position = Symbol22Pin2.transform.position;
-                        xSpeed = RightSpeed;
-                    }
-                }
+            if (Symbol22Pin1.transform.position == DialPin.transform.position)
+            {
+                S22_pin1 = true;
+                Symbol22Pin1.transform.position = Symbol22Pin1.transform.position;
+                S22.SetActive(true);
+            }
 
-        
-        // check if pins are dialed AND Gate is Rotated
+            if (Symbol22Pin2.transform.position == DialPin.transform.position)
+            {
+                S22_pin2 = true;
+                Symbol22Pin2.transform.position = Symbol22Pin2.transform.position;
+                xSpeed = RightSpeed;
+            }
+        }
+
         if (S22_pin1 == true && S22_pin2 == true)
         {
             if (Gate.transform.eulerAngles.x > 0 && Gate.transform.eulerAngles.x < 1)
@@ -140,51 +109,11 @@ public class consoleMenu : MonoBehaviour
                 eventHorizon.SetActive(true);
             }
         }
-        
-
 
         if (Input.GetKeyDown(KeyCode.F))
         {
             DialNow = true;
         }
-
-        // START GATE DIAL PROCESS
-
-
-
-
-        // 1. Fire light pin up to fixed position after gate has stoped on shevron and light it up, then fire second pin to move gate again
-        /* if (xSpeed == 0.0f)
-         {
-             // fire pin 1
-             if (Symb)
-             {
-                 // light up and fire pin2
-                 if ()
-                 {
-                     //rotate gate again
-                 }
-             }
-         }*/
-
-
-        //        }
-
-
-
-        //consoleMenuUI.SetActive(true);
-        //isShowingUI = !isShowingUI;
-        /*
-        if (isShowingUI)
-        {
-            ShowUI();
-        }
-
-        else
-        {
-            HideUI();
-        }
-        */
 
     }
         void ShowUI()
@@ -206,29 +135,19 @@ public class consoleMenu : MonoBehaviour
 
         void rotateGate()
         {
-            // use a Quaternion.lerp with set targets.
-            //Gate.transform.rotation = Quaternion.Lerp(Gate.transform.rotation, to.rotation, Time.time * xSpeed);
+
         }
 
         public void DailGate()
         {
             if (eventHorizon.activeSelf)
             {
-                Debug.Log("GATE SHUTDOWN");
-                //GateShutDown.Play();
                 eventHorizon.SetActive(false);
                 GetConst.Stop();
             }
             else
             {
-                Debug.Log("GATE DAILED");
-                //GateActivate.Play();
                 eventHorizon.SetActive(true);
-                //GetConst.Play();
             }
-            //HideUI();
-            //isShowingUI = false;
         }
-
-    
 }

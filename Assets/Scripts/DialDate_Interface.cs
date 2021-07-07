@@ -8,7 +8,6 @@ public class DialDate_Interface : MonoBehaviour
     [SerializeField] public GameObject consoleMenuUI;
     [SerializeField] public GameObject KinoMenuUI;
     [SerializeField] public GameObject remoteMenuUI;
-   // [SerializeField] private GameObject eventHorizon;
     [SerializeField] public bool isShowingUI;
 
     // EXTERNAL REFERENCES
@@ -54,8 +53,6 @@ public class DialDate_Interface : MonoBehaviour
     public Button Add_1;
     public Button Add_2;
     public Button Add_3;
-
-    //public Button VideoButton_1;
 
     private DialGate Shev_1;
     private DialGate Shev_2;
@@ -106,7 +103,6 @@ public class DialDate_Interface : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        Debug.Log("START_DGINT");
         Shev_1 = FindObjectOfType<DialGate>();
         Shev_2 = FindObjectOfType<DialGate>();
         Shev_3 = FindObjectOfType<DialGate>();
@@ -190,20 +186,10 @@ public class DialDate_Interface : MonoBehaviour
         Add_1.onClick.AddListener(AddButton_1);
         Add_2.onClick.AddListener(AddButton_2);
         Add_3.onClick.AddListener(AddButton_3);
-
-        //VideoButton_1.onClick.AddListener(PlayKinoVideo_1);  
-
-        // If the gate is active from the player coming through it, disabled the UI buttons
-        // if (eventHorizon.activeSelf)
-        //  {
-        //      sym_1.interactable = false;
-        // }
-
     }
 
     public void SymbolButton_1()
     {
-        Debug.Log("BUTTON 1 PRESSED");
         Shev_1.Shev_1();
         LastSceneLoaded.sym_1 = false;
         ColorBlock colorVar = sym_1.colors;
@@ -213,7 +199,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_2()
     {
-        Debug.Log("BUTTON 2 PRESSED");
         Shev_2.Shev_2();
         LastSceneLoaded.sym_2 = false;
         ColorBlock colorVar = sym_2.colors;
@@ -223,7 +208,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_3()
     {
-        Debug.Log("BUTTON 3 PRESSED");
         Shev_3.Shev_3();
         LastSceneLoaded.sym_3 = false;
         ColorBlock colorVar = sym_3.colors;
@@ -233,7 +217,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_4()
     {
-        Debug.Log("BUTTON 4 PRESSED");
         Shev_4.Shev_4();
         LastSceneLoaded.sym_4 = false;
         ColorBlock colorVar = sym_4.colors;
@@ -243,7 +226,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_5()
     {
-        Debug.Log("BUTTON 5 PRESSED");
         Shev_5.Shev_5();
         LastSceneLoaded.sym_5 = false;
         ColorBlock colorVar = sym_5.colors;
@@ -253,7 +235,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_6()
     {
-        Debug.Log("BUTTON 6 PRESSED");
         Shev_6.Shev_6();
         LastSceneLoaded.sym_6 = false;
         ColorBlock colorVar = sym_6.colors;
@@ -263,7 +244,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_7()
     {
-        Debug.Log("BUTTON 7 PRESSED");
         Shev_7.Shev_7();
         LastSceneLoaded.sym_7 = false;
         ColorBlock colorVar = sym_7.colors;
@@ -273,7 +253,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_8()
     {
-        Debug.Log("BUTTON 8 PRESSED");
         Shev_8.Shev_8();
         LastSceneLoaded.sym_8 = false;
         ColorBlock colorVar = sym_8.colors;
@@ -283,7 +262,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_9()
     {
-        Debug.Log("BUTTON 9 PRESSED");
         Shev_9.Shev_9();
         LastSceneLoaded.sym_9 = false;
         ColorBlock colorVar = sym_9.colors;
@@ -293,7 +271,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_10()
     {
-        Debug.Log("BUTTON 10 PRESSED");
         Shev_10.Shev_10();
         LastSceneLoaded.sym_10 = false;
         ColorBlock colorVar = sym_10.colors;
@@ -303,7 +280,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_11()
     {
-        Debug.Log("BUTTON 11 PRESSED");
         Shev_11.Shev_11();
         LastSceneLoaded.sym_11 = false;
         ColorBlock colorVar = sym_11.colors;
@@ -313,7 +289,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_12()
     {
-        Debug.Log("BUTTON 12 PRESSED");
         Shev_12.Shev_12();
         LastSceneLoaded.sym_12 = false;
         ColorBlock colorVar = sym_12.colors;
@@ -323,7 +298,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_13()
     {
-        Debug.Log("BUTTON 13 PRESSED");
         Shev_13.Shev_13();
         LastSceneLoaded.sym_13 = false;
         ColorBlock colorVar = sym_13.colors;
@@ -333,7 +307,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_14()
     {
-        Debug.Log("BUTTON 14 PRESSED");
         Shev_14.Shev_14();
         LastSceneLoaded.sym_14 = false;
         ColorBlock colorVar = sym_14.colors;
@@ -343,7 +316,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_15()
     {
-        Debug.Log("BUTTON 15 PRESSED");
         Shev_15.Shev_15();
         LastSceneLoaded.sym_15 = false;
         ColorBlock colorVar = sym_15.colors;
@@ -353,7 +325,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_16()
     {
-        Debug.Log("BUTTON 16 PRESSED");
         Shev_16.Shev_16();
         LastSceneLoaded.sym_16 = false;
         ColorBlock colorVar = sym_16.colors;
@@ -363,7 +334,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_17()
     {
-        Debug.Log("BUTTON 17 PRESSED");
         Shev_17.Shev_17();
         LastSceneLoaded.sym_17 = false;
         ColorBlock colorVar = sym_17.colors;
@@ -373,7 +343,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_18()
     {
-        Debug.Log("BUTTON 18 PRESSED");
         Shev_18.Shev_18();
         LastSceneLoaded.sym_18 = false;
         ColorBlock colorVar = sym_18.colors;
@@ -383,7 +352,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_19()
     {
-        Debug.Log("BUTTON 19 PRESSED");
         Shev_19.Shev_19();
         LastSceneLoaded.sym_19 = false;
         ColorBlock colorVar = sym_19.colors;
@@ -393,7 +361,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_20()
     {
-        Debug.Log("BUTTON 20 PRESSED");
         Shev_20.Shev_20();
         LastSceneLoaded.sym_20 = false;
         ColorBlock colorVar = sym_20.colors;
@@ -403,7 +370,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_21()
     {
-        Debug.Log("BUTTON 21 PRESSED");
         Shev_21.Shev_21();
         LastSceneLoaded.sym_21 = false;
         ColorBlock colorVar = sym_21.colors;
@@ -413,7 +379,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_22()
     {
-        Debug.Log("BUTTON 22 PRESSED");
         Shev_22.Shev_22();
         LastSceneLoaded.sym_22 = false;
         ColorBlock colorVar = sym_22.colors;
@@ -423,7 +388,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_23()
     {
-        Debug.Log("BUTTON 23 PRESSED");
         Shev_23.Shev_23();
         LastSceneLoaded.sym_23 = false;
         ColorBlock colorVar = sym_23.colors;
@@ -433,7 +397,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_24()
     {
-        Debug.Log("BUTTON 24 PRESSED");
         Shev_24.Shev_24();
         LastSceneLoaded.sym_24 = false;
         ColorBlock colorVar = sym_24.colors;
@@ -443,7 +406,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_25()
     {
-        Debug.Log("BUTTON 25 PRESSED");
         Shev_25.Shev_25();
         LastSceneLoaded.sym_25 = false;
         ColorBlock colorVar = sym_25.colors;
@@ -453,7 +415,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_26()
     {
-        Debug.Log("BUTTON 26 PRESSED");
         Shev_26.Shev_26();
         LastSceneLoaded.sym_26 = false;
         ColorBlock colorVar = sym_26.colors;
@@ -463,7 +424,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_27()
     {
-        Debug.Log("BUTTON 27 PRESSED");
         Shev_27.Shev_27();
         LastSceneLoaded.sym_27 = false;
         ColorBlock colorVar = sym_27.colors;
@@ -473,7 +433,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_28()
     {
-        Debug.Log("BUTTON 28 PRESSED");
         Shev_28.Shev_28();
         LastSceneLoaded.sym_28 = false;
         ColorBlock colorVar = sym_28.colors;
@@ -483,7 +442,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_29()
     {
-        Debug.Log("BUTTON 29 PRESSED");
         Shev_29.Shev_29();
         LastSceneLoaded.sym_29 = false;
         ColorBlock colorVar = sym_29.colors;
@@ -493,7 +451,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_30()
     {
-        Debug.Log("BUTTON 30 PRESSED");
         Shev_30.Shev_30();
         LastSceneLoaded.sym_30 = false;
         ColorBlock colorVar = sym_30.colors;
@@ -503,7 +460,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_31()
     {
-        Debug.Log("BUTTON 31 PRESSED");
         Shev_31.Shev_31();
         LastSceneLoaded.sym_31 = false;
         ColorBlock colorVar = sym_31.colors;
@@ -513,7 +469,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_32()
     {
-        Debug.Log("BUTTON 32 PRESSED");
         Shev_32.Shev_32();
         LastSceneLoaded.sym_32 = false;
         ColorBlock colorVar = sym_32.colors;
@@ -523,7 +478,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_33()
     {
-        Debug.Log("BUTTON 33 PRESSED");
         Shev_33.Shev_33();
         LastSceneLoaded.sym_33 = false;
         ColorBlock colorVar = sym_33.colors;
@@ -533,7 +487,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_34()
     {
-        Debug.Log("BUTTON 34 PRESSED");
         Shev_34.Shev_34();
         LastSceneLoaded.sym_34 = false;
         ColorBlock colorVar = sym_34.colors;
@@ -543,7 +496,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_35()
     {
-        Debug.Log("BUTTON 35 PRESSED");
         Shev_35.Shev_35();
         LastSceneLoaded.sym_35 = false;
         ColorBlock colorVar = sym_35.colors;
@@ -553,7 +505,6 @@ public class DialDate_Interface : MonoBehaviour
     }
     public void SymbolButton_36()
     {
-        Debug.Log("BUTTON 36 PRESSED");
         Shev_36.Shev_36();
         LastSceneLoaded.sym_36 = false;
         ColorBlock colorVar = sym_36.colors;
@@ -564,25 +515,21 @@ public class DialDate_Interface : MonoBehaviour
 
     public void AddButton_1()
     {
-        Debug.Log("BUTTON ADD 1 PRESSED");
         Shev_Add_1.Shev_Add_1();
     }
 
     public void AddButton_2()
     {
-        Debug.Log("BUTTON ADD 2 PRESSED");
         Shev_Add_2.Shev_Add_2();
     }
 
     public void AddButton_3()
     {
-        Debug.Log("BUTTON ADD 3 PRESSED");
         Shev_Add_3.Shev_Add_3();
     }
 
     public void ShowUI()
     {
-        Debug.Log("UI OPEB YO");
         Time.timeScale = 0f;
         consoleMenuUI.SetActive(true);
         Cursor.visible = true;
@@ -604,7 +551,6 @@ public class DialDate_Interface : MonoBehaviour
 
     public void ShowKinoUI()
     {
-        Debug.Log("UI OPEB YO");
         Time.timeScale = 0f;
         KinoMenuUI.SetActive(true);
         Cursor.visible = true;
@@ -618,8 +564,4 @@ public class DialDate_Interface : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
-
-
-
 }

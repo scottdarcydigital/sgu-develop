@@ -19,20 +19,16 @@ public class DialGate : MonoBehaviour
 
     // Temp Var
     [SerializeField] private string AttemptingToDialLocation;
-
     [SerializeField] private GameObject Gate;
     [SerializeField] private GameObject DialPin;
     [SerializeField] public GameObject eventHorizon;
     [SerializeField] private GameObject ball;
-
     [SerializeField] private List<GameObject> SymbolLights;
     [SerializeField] private List<GameObject> Targets_Arr;
     [SerializeField] private List<GameObject> ArchPin_Arr;
-    // [SerializeField] private List<GameObject> Selected_Address;
 
     public bool DialNow = false;
     public bool GatePaused = false;
-   // public bool currentlyDialing = false;
     public bool GateIsActive = false;
     public float xSpeed;
     public float xSpeedCopy;
@@ -40,7 +36,6 @@ public class DialGate : MonoBehaviour
     public float RandomRotationDirection;
     public int GateAddressMin = 7;
 
-   // public float activeForwardSpeed;
     public float forwardSpeed;
     public float forward_acc;
     public float forward_dcc;
@@ -49,9 +44,6 @@ public class DialGate : MonoBehaviour
     public List<GameObject> GateAddress_TargetLocations_Arr = new List<GameObject>();
     public List<GameObject> ShevronsLocked_Arr = new List<GameObject>();
     public List<GameObject> Shevrons = new List<GameObject>();
-  //  public List<GameObject> Address_Destiny;
-  //  public List<GameObject> Address_1;
-  //  public List<GameObject> Address_2;
 
     public Material BlueGlow;
     public Material YellowGlow;
@@ -79,13 +71,10 @@ public class DialGate : MonoBehaviour
         foreach (GameObject light in Shevrons)
         {
             light.GetComponent<MeshRenderer>().material = BlueGlow;
-            
         }
         GateTurnOn.Play();
         GateSpinning.Play();
-
         ball.GetComponent<MeshRenderer>().material = BlueGlow;
-
     }
     public void YellowShevrons()
     {
@@ -108,7 +97,6 @@ public class DialGate : MonoBehaviour
         {
             light.GetComponent<MeshRenderer>().material = LightOff;
         }
-
         ball.GetComponent<MeshRenderer>().material = LightOff;
     }
 
@@ -155,7 +143,6 @@ public class DialGate : MonoBehaviour
 
     public void UIButtons_Inactive()
     {
-        Debug.Log("UIButtons_Inactive");
         UIbuttons.sym_1.interactable = false;
         UIbuttons.sym_2.interactable = false;
         UIbuttons.sym_3.interactable = false;
@@ -196,7 +183,6 @@ public class DialGate : MonoBehaviour
 
     public void UIButtons_LastSceneLoaded_Active()
     {
-        // set the global UI value back to true, This is to be used by the Remote Script later on.
         LastSceneLoaded.sym_1 = true;
         LastSceneLoaded.sym_2 = true;
         LastSceneLoaded.sym_3 = true;
@@ -237,7 +223,6 @@ public class DialGate : MonoBehaviour
 
     public void UIButtons_LastSceneLoaded_Inactive()
     {
-        // set the global UI value back to true, This is to be used by the Remote Script later on.
         LastSceneLoaded.sym_1 = false;
         LastSceneLoaded.sym_2 = false;
         LastSceneLoaded.sym_3 = false;
@@ -274,7 +259,6 @@ public class DialGate : MonoBehaviour
         LastSceneLoaded.sym_34 = false;
         LastSceneLoaded.sym_35 = false;
         LastSceneLoaded.sym_36 = false;
-
     }
 
     public void UnlitSymbols()
@@ -282,7 +266,6 @@ public class DialGate : MonoBehaviour
         foreach (GameObject light in SymbolLights)
         {
             light.SetActive(false);
-            //HERE2021
         }
     }
 
@@ -306,74 +289,18 @@ public class DialGate : MonoBehaviour
         GateAddress_Arr.Clear();
         ShevronsLocked_Arr.Clear();
         GateAddress_TargetLocations_Arr.Clear();
-       // xSpeed = 40.0f;
         Invoke("UIButtons_Active", 0.0f);
         Invoke("UIButtons_LastSceneLoaded_Active", 0.0f);
         return;
     }
 
-    // NOTE : Since the prefab refactoring the symbols of the previous address on the gate is handled buy the puddle.cs as the symbols should only be active when the puddle is active.
-    // Therefore there is no need for this function anymore
-    // This is mainly due to the abandonment of the LastSceneLoaded.cs global static script as this class DOES NOT FUNCTION IN BUILDS OF GAME AND IS BAD PRACTICE. 
-    /*
-       public void usual()
-       {
-           // IF THE PLAYER TRAVELS 'WITHOUT' THE KINO EG: SOLO Then the Gate should just point back to the previousLocation
-
-           if (LastSceneLoaded.previousLocation == "AddressOne")
-           {
-               eventHorizon.SetActive(true);
-               BlueShevrons();
-
-               // Turn on the correct symbol lights on the gate
-               for (var i = 0; i < Address_1.Count; i++)
-               {
-                   Address_1[i].SetActive(true);
-               }
-           }
-
-           else if (LastSceneLoaded.previousLocation == "AddressTwo")
-           {
-               eventHorizon.SetActive(true);
-               BlueShevrons();
-
-               // Turn on the correct symbol lights on the gate
-               for (var i = 0; i < Address_2.Count; i++)
-               {
-                   Address_2[i].SetActive(true);
-               }
-
-           }
-
-           else if (LastSceneLoaded.previousLocation == "GateRoom_1")
-           {
-               eventHorizon.SetActive(true);
-               BlueShevrons();
-
-               // Turn on the correct symbol lights on the gate
-               for (var i = 0; i < Address_Destiny.Count; i++)
-               {
-                   Address_Destiny[i].SetActive(true);
-               }
-           }
-           else
-           {
-               Debug.Log("You have started play in the gate room or are in FTL...");
-           }
-       }
-    */
-
-    // Start is called before the first frame update
     void Start()
     {
         gateRoomSmokeright.Stop();
         gateRoomSmokeleft.Stop();
-        Debug.Log("PPP" + LastSceneLoaded.previousLocation);
         Scene scene = SceneManager.GetActiveScene();
-        Debug.Log("Active Scene is '" + scene.name + "'.");
         UIbuttons = FindObjectOfType<DialDate_Interface>();
         RandomRotationDirection = Random.Range(0.0f, 1.0f);       // NOTE USE THIS TO FIGURE OUT WHICH WAY AND TO RANDOMISE THE SPIN DIRECTION OF THE GATE
-
         playerLocation = FindObjectOfType<GameManager>();
         countDownVariables = FindObjectOfType<GameManager>();
 
@@ -386,21 +313,16 @@ public class DialGate : MonoBehaviour
             xSpeedCopy = xSpeed;
         }
 
-        // usual();
-
-        // If the gate is active, disabled the UI buttons
         if (eventHorizon.activeSelf)
         {
             UIButtons_Inactive();
             UIButtons_LastSceneLoaded_Inactive();
         }
 
-        // If the player was anywhere eg: lastlocation is not "null" then have them start at the eventHorizon
         if (LastSceneLoaded.previousLocation != "null")
         {
 
         }
-
     }
 
     void randomDirection() {
@@ -418,11 +340,9 @@ public class DialGate : MonoBehaviour
 
     public float accinc = 0.01f;
 
-    // Update is called once per frame
     void Update()
     {
         Scene scene = SceneManager.GetActiveScene();
-        
 
         if (ShevronsLocked_Arr.Count == GateAddressMin)
         {
@@ -441,17 +361,6 @@ public class DialGate : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-
-            Debug.Log("06.07 " + GateAddress_Arr[0]);
-            Debug.Log("06.07 " + GateAddress_Arr[1]);
-            Debug.Log("06.07 " + GateAddress_Arr[2]);
-            Debug.Log("06.07 " + GateAddress_Arr[3]);
-            Debug.Log("06.07 " + GateAddress_Arr[4]);
-            Debug.Log("06.07 " + GateAddress_Arr[5]);
-            Debug.Log("06.07 " + GateAddress_Arr[6]);
-
-            // TODO // run a check to see if the address entered is your current location...if so throw a function...
-
             if (
                 GateAddress_Arr.Contains(ArchPin_Arr[0]) &&
                 GateAddress_Arr.Contains(ArchPin_Arr[1]) &&
@@ -512,12 +421,9 @@ public class DialGate : MonoBehaviour
                 GateAddress_TargetLocations_Arr.Clear();
                 return;
             }
-            // old line * No longer using global script.
-            //else if (scene.name == LastSceneLoaded.AttemptingToDialLocation)
 
             else if (AttemptingToDialLocation == playerLocation.PlayerLocation)  // HERE 08.03   // your player and kino location for this.
             {
-                Debug.Log("502 : " + playerLocation.PlayerLocation);
                 attemptingToDialSameAddress();
             }
             else if (GateAddress_Arr.Count == GateAddressMin)
@@ -529,12 +435,6 @@ public class DialGate : MonoBehaviour
         
         if (DialNow == true)
         {
-            // set the time for the countdownclock upon dialing a valid planet (pre-multiply)
-           // countDownVariables.countDownTime = countDownVariables.countDownTimeRecord;
-
-            // when the clock starts counting again your need to reset this value in order for the game over state to trigger when the timer runs out correctly. 
-            //countDownVariables.gateManuallyShutDown = false;
-
             if (GatePaused) { 
                 xSpeed = Mathf.Lerp(xSpeed, 0.0f * forwardSpeed, forward_dcc * Time.deltaTime);
             } 
@@ -549,15 +449,13 @@ public class DialGate : MonoBehaviour
                 GateAddress_Arr[i].transform.position = Vector3.MoveTowards(GateAddress_Arr[i].transform.position, GateAddress_TargetLocations_Arr[i].transform.position, 0.05f);
             }
 
-            // only play spinning sound while gate is moving
             if (xSpeed == 0.0f)
             {
                 GateSpinning.volume = 0.0f;
-            } else if (xSpeed > 2.0f) // this is a value for the acceleration to take sound into effect later
+            } else if (xSpeed > 2.0f)
             {
-                GateSpinning.volume = 0.1f; // this value should increase at the same rate of accelleration when the lerp is introduced later
+                GateSpinning.volume = 0.1f;
             }
-
         }
 
         if (GateAddress_Arr.Count == GateAddressMin)
@@ -566,7 +464,7 @@ public class DialGate : MonoBehaviour
             UIButtons_LastSceneLoaded_Inactive();
         }
 
-    } // ends update();
+    }
 
     public void DailGate()
     {
@@ -578,27 +476,11 @@ public class DialGate : MonoBehaviour
             xSpeed = 0.0f;
             GateIsActive = true;
             DialNow = false;
-          //  currentlyDialing = false;
         }
     }
 
     public void ShutDownGate()
     {
-        //Debug.Log("gateManuallyShutDown WAS .X: " + countDownVariables.gateManuallyShutDown);
-        
-        //countDownVariables.gateManuallyShutDown = true;
-
-        // if you have manually shut down the gate then handle the countdown reset as well
-        //countDownVariables.countDownTime = countDownVariables.countDownTimeRecord;
-
-        //Debug.Log("gateManuallyShutDown IS .X: " + countDownVariables.gateManuallyShutDown);
-
-        /*
-
-         // THis should only be false while the clock is counting down...
-         countDownVariables.gateManuallyShutDown = true;
-        */
-
         GateIsActive = false;
         DialNow = false;
 
@@ -608,15 +490,11 @@ public class DialGate : MonoBehaviour
 
         GateShutDown.Play();
         GetConst.Stop();
-        // xSpeed = 40.0f; //old
         Invoke("shutdownEventHorizon", 1.0f);
         Invoke("UnlitShevrons", 2.0f);
         Invoke("UnlitSymbols", 2.0f);
         Invoke("UIButtons_Active", 2.5f);
         Invoke("UIButtons_LastSceneLoaded_Active", 2.5f);
-
-
-
     }
 
     public void Shev_1()

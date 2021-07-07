@@ -57,7 +57,6 @@ public class chest : MonoBehaviour
     void showChestUI()
     {
         chestUI.SetActive(true);
-        //taken from FirstPersonAIO.cs
         PlayerScript.enableCameraMovement = false;
         PlayerScript.playerCanMove = false;
 
@@ -71,7 +70,6 @@ public class chest : MonoBehaviour
     {
         chestUI.SetActive(false);
         playerUsingChest = false;
-        //taken from FirstPersonAIO.cs
         PlayerScript.enableCameraMovement = true;
         PlayerScript.playerCanMove = true;
 

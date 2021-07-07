@@ -19,7 +19,6 @@ public class DoorOpen : MonoBehaviour
     public Material YellowGlow;
 
     public bool DoorSafe;
-
     public bool PlayerInRange;
     public bool OpenDoors;
 
@@ -28,7 +27,6 @@ public class DoorOpen : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            Debug.Log("player at door");
             PlayerInRange = true;
         }
     }
@@ -37,24 +35,20 @@ public class DoorOpen : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("player NOT at door");
             PlayerInRange = false;
             OpenDoors = false;
             CloseDoorsFunction();
         }
-
     }
 
     public void OpenDoorsFunction()
     {
-        Debug.Log("OpenDoors");
         Door_Left.transform.position = Vector3.MoveTowards(Door_Left.transform.position, Door_LeftOpenPosition.transform.position, 0.05f);
         Door_Right.transform.position = Vector3.MoveTowards(Door_Right.transform.position, Door_RigthOpenPosition.transform.position, 0.05f);
     }
 
     public void CloseDoorsFunction()
     {
-        Debug.Log("CloseDoors");
         DoorButtonLights[0].GetComponent<MeshRenderer>().material = YellowGlow;
         DoorButtonLights[1].GetComponent<MeshRenderer>().material = YellowGlow;
         Door_Left.transform.position = Vector3.MoveTowards(Door_Left.transform.position, Door_LeftClosePosition.transform.position, 0.1f);
@@ -68,7 +62,6 @@ public class DoorOpen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If the Door is not safe, so dont open doors and change light to red...regardless of player location 
         if (!DoorSafe)
         {
             DoorButtonLights[0].GetComponent<MeshRenderer>().material = RedGlow;
@@ -99,7 +92,6 @@ public class DoorOpen : MonoBehaviour
                 }
             } 
         }
-        // only turn yellow when the Door is safe regardless of player location 
         else if (!PlayerInRange && DoorSafe)
         {
             CloseDoorsFunction();

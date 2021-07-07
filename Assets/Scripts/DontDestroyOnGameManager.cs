@@ -7,23 +7,17 @@ public class DontDestroyOnGameManager : MonoBehaviour
 {
     public static DontDestroyOnGameManager Instance;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
         if(Instance != null)
         {
             Destroy(this.gameObject);
             return;
         }
-
         Instance = this;
-        
         DontDestroyOnLoad(this.gameObject);
-
     }
 
-    // Update is called once per frame
     void Update()
     {
     }

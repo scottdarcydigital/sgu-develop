@@ -51,7 +51,6 @@ public class WaterBot : MonoBehaviour
 
     void doneFarming()
     {
-        Debug.Log("DONE FARMING");
         CancelInvoke("StartFarming");
         CancelInvoke("HarvestCount");
         //  reset values as water will now have been farmed and are therefore null
@@ -60,29 +59,7 @@ public class WaterBot : MonoBehaviour
         isAtWaterHoverPosition = false;
         WaterBotLight.GetComponent<MeshRenderer>().material = BlueGlow;
         WaterBotSpotlight.GetComponent<Light>().color = Color.white;
-
-        // only add water to THIS Water Bot
-        //this.harvested_Water++;
-
-        // add the number of water harvested to the game manager 
-        // Inventory_Water.Inventory_Water++;
-
-        Debug.Log("Inventory_Water : " + Inventory_Water);
-
-        // Not needed as water should not be destroyed upon harvest (only encounter lakes etc...)
-        //Destroy(waterBeingFarmed);
-
-
-
-        Debug.Log("987" + waterBeingFarmed.name);
-        Debug.Log("987" + waterHoverPoint.name);
-        Debug.Log("987" + waterFarmingPoint.name);
-
-        // update the collected water value text
         waternumberUI.text = harvested_Water.ToString();
-        Debug.Log("harvested_Water" + harvested_Water);
-
-        // cancel this once finished otherwise it will loop and destroy all water at [0] index
         CancelInvoke("doneFarming");
     }
 
@@ -102,15 +79,12 @@ public class WaterBot : MonoBehaviour
 
             if (harvested_Water <= 0)   // effects the ++ increment
             {
-                // update the collected crops value text
                 waternumberUI.text = harvested_Water.ToString();
-                Debug.Log("harvested_Water" + harvested_Water);
                 InvokeRepeating("HarvestCount", 0.0f, 3.0f);    // add every one second
             }
 
         } else
         {
-            Debug.Log("Bot is Full");
             return;
         }
 
@@ -123,8 +97,6 @@ public class WaterBot : MonoBehaviour
         if (other.tag == "Water")
         {
             inRange = true;
-
-            Debug.Log("Water Detected : " + other.name);
             WaterToHarvest.Add(other.gameObject);
             other.gameObject.GetComponent<MeshRenderer>().material = WaterDetected;
         }
@@ -170,14 +142,12 @@ public class WaterBot : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F5))
         {
-
             shouldBeScouting = true;
             sendThroughGate = false;
         }
 
         if (Input.GetKeyDown(KeyCode.F6))
         {
-
             shouldBeScouting = false;
             sendThroughGate = false;
             doneFarming();
@@ -185,7 +155,6 @@ public class WaterBot : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F7))
         {
-            // ensure the ui is hidden after the proximity game object has been set to inactive
             WaterUI.SetActive(false);
             shouldBeScouting = false;
             sendThroughGate = true;
@@ -205,7 +174,6 @@ public class WaterBot : MonoBehaviour
             if (ReadyToTravel)
             {
                 this.transform.position = Vector3.MoveTowards(this.transform.position, GatePuddleLocation.transform.position, 0.3f);
-                //once the bot has travelled through the gate reset sendthrough gate to false and ready to travel to false as well
                 if (this.transform.position == GatePuddleLocation.transform.position)
                 {
                     sendThroughGate = false;
@@ -256,10 +224,7 @@ public class WaterBot : MonoBehaviour
                     {
                         isAtWaterHoverPosition = true;
                     }
-                } else
-                {
-                    Debug.Log("Bot is Full");
-                }
+                } 
             }
         }
     }

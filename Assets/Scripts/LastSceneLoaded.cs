@@ -68,9 +68,6 @@ public class LastSceneLoaded : MonoBehaviour
     public static float GATEROOM_kinoLastKnownLocationY;
     public static float GATEROOM_kinoLastKnownLocationZ;
 
-
-    // ****************************************
-
     public static string KinoPrev_Location = "null";
     public static string KinoCurr_Location = "null";
     public static string PlayerPrev_Location = "null";
@@ -87,21 +84,7 @@ public class LastSceneLoaded : MonoBehaviour
 
     public static void Log()
     {
-        Debug.Log("2602 KinoPrev_Location : " + KinoPrev_Location);
-        Debug.Log("2602 KinoCurr_Location : " + KinoCurr_Location);
-        Debug.Log("2602 PlayerPrev_Location : " + PlayerPrev_Location);
-        Debug.Log("2602 PlayerCurr_Location : " + PlayerCurr_Location);
-        Debug.Log("2602 Player_Active : " + Player_Active);
-        Debug.Log("Kino_Active : " + Kino_Active);
     }
-
-
-
-
-
-
-
-
 
     public static string PreviousLocation
     {

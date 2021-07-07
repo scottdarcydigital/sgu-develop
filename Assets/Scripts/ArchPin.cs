@@ -30,8 +30,8 @@ public class ArchPin : MonoBehaviour
 
     void Update()
     {
-        // Reset the values of this scrit once the ArchPin is put back into its origianl location
-        if (this.transform.position == GateCenter.transform.position)   // REFERS TO ALL INSTANCES OF ARCHPIN!
+        // Reset the values of this script once the ArchPin is put back into its origianl location
+        if (this.transform.position == GateCenter.transform.position)
         {
             Hit = false;
             paused = false;
@@ -77,27 +77,20 @@ public class ArchPin : MonoBehaviour
 
     public void AddShevron()
     {
-        // TODO move this to a better function...
-        ShevronsLocked.ShevronsLocked_Arr.Add(Light);   // doesnt really matter what you add here as long as its consistent and adds to 8 so the evenhorizon can render
+        ShevronsLocked.ShevronsLocked_Arr.Add(Light);   
         ShevLocked.Play();
-        GateDirection.RandomRotationDirection = Random.Range(0.0f, 1.0f); // Randomise direction of gate spinning as a value on each pin!!!
+        GateDirection.RandomRotationDirection = Random.Range(0.0f, 1.0f);
         ArchAddedToArray = true;
         GateSpeed.GatePaused = false;
 
         if (GateDirection.RandomRotationDirection <= 0.5f)
         {
-            //  GateSpeed.xSpeedCopy = 40.0f;  // was neg
-            //  GateSpeed.xSpeed = 40.0f; // was neg
-
             GateSpeed.xSpeed = Mathf.Lerp(GateSpeed.xSpeed, 1.0f * GateSpeed.forwardSpeed, GateSpeed.forward_acc * Time.deltaTime);
             GateSpeed.xSpeedCopy = Mathf.Lerp(GateSpeed.xSpeed, 1.0f * GateSpeed.forwardSpeed, GateSpeed.forward_acc * Time.deltaTime);
 
         }
         else
         {
-            //  GateSpeed.xSpeedCopy = 40.0f; //old
-            //  GateSpeed.xSpeed = 40.0f; //old
-
             GateSpeed.xSpeed = Mathf.Lerp(GateSpeed.xSpeed, 1.0f * GateSpeed.forwardSpeed, GateSpeed.forward_acc * Time.deltaTime);
             GateSpeed.xSpeedCopy = Mathf.Lerp(GateSpeed.xSpeed, 1.0f * GateSpeed.forwardSpeed, GateSpeed.forward_acc * Time.deltaTime);
 
@@ -108,7 +101,6 @@ public class ArchPin : MonoBehaviour
     {
         if (other.tag == "Dail_Pin")
         {
-            //GateSpeed.xSpeed = GateSpeed.Stop;
             GateSpeed.xSpeed = Mathf.Lerp(GateSpeed.xSpeed, 0.0f * GateSpeed.forwardSpeed, 60.0f * Time.deltaTime);
             Hit = true;
             paused = true;

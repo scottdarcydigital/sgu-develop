@@ -25,9 +25,9 @@ public class CropBot : MonoBehaviour
     // only enable the Crops UI when the bot is NOT farming
     public GameObject PlayerProximityFor_CropsUI;
     public GameObject CropsUI;
-
     public GameObject CropBotLight;
     public GameObject CropBotSpotlight;
+
     public Material YellowGlow;
     public Material BlueGlow;
     public Material CropDetected;
@@ -39,49 +39,30 @@ public class CropBot : MonoBehaviour
 
     // list of crops Currently found
     public List<GameObject> CropsToHarvest = new List<GameObject>();
-
     public int harvested_Crops = 0;
     public GameManager Inventory_Crops;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("DEBUG BOT ACTIVE");
         Inventory_Crops = FindObjectOfType<GameManager>();
     }
 
     void doneFarming()
     {
-        Debug.Log("DONE FARMING");
         CancelInvoke("StartFarming");
-        //  reset values as crop will now have been farmed and are therefore null
         inRange = false;
         isFarming = false;
         isAtCropHoverPosition = false;
         CropBotLight.GetComponent<MeshRenderer>().material = BlueGlow;
         CropBotSpotlight.GetComponent<Light>().color = Color.white;
 
-        // only add crops to THIS Crop Bot
         this.harvested_Crops++;
-
-        // add the number of crops harvested to the game manager 
-        // Inventory_Crops.Inventory_Crops++;
-        
-        Debug.Log("Inventory_Crops : " + Inventory_Crops);
 
         Destroy(cropsBeingFarmed);
 
-
-
-        Debug.Log("987" + cropsBeingFarmed.name);
-        Debug.Log("987" + cropHoverPoint.name);
-        Debug.Log("987" + cropFarmingPoint.name);
-
-        // update the collected crops value text
         cropsnumberUI.text = harvested_Crops.ToString();
-        Debug.Log("harvested_Crops" + harvested_Crops);
 
-        // cancel this once finished otherwise it will loop and destroy all crops at [0] index
         CancelInvoke("doneFarming");
     }
 
@@ -91,10 +72,7 @@ public class CropBot : MonoBehaviour
         this.transform.position = Vector3.MoveTowards(this.transform.position, cropFarmingPoint.transform.position, 0.03f);
         CropBotLight.GetComponent<MeshRenderer>().material = YellowGlow;
         CropBotSpotlight.GetComponent<Light>().color = Color.yellow;
-        // update the collected crops value text
         cropsnumberUI.text = harvested_Crops.ToString();
-        Debug.Log("harvested_Crops" + harvested_Crops);
-
         Invoke("doneFarming", 1.0f);
     }
 
@@ -104,27 +82,12 @@ public class CropBot : MonoBehaviour
         if (other.tag == "Crops")
         {
             inRange = true;
-
-            Debug.Log("Crops Detected : " + other.name);
             CropsToHarvest.Add(other.gameObject);
             other.gameObject.GetComponent<MeshRenderer>().material = CropDetected;
         }
     }
-
-    // Update is called once per frame
     void Update()
     {
-        // Disable UI player proximity object if the bot is currently farming
-        /* if (isFarming || shouldBeScouting || sendThroughGate)
-         {
-             if (CropsToHarvest.Count > 0)
-             {
-                 PlayerProximityFor_CropsUI.SetActive(false);
-             }
-         } 
-        */
-
-        // if the bot has harvest the last crop for now, set values back to what they should be
         if (shouldBeScouting && CropsToHarvest.Count == 0)
         {
             shouldBeScouting = false;
@@ -149,28 +112,22 @@ public class CropBot : MonoBehaviour
         
         if (PlayerProximityFor_CropsUI.activeSelf)
         {
-          //  cropsnumberUI.text = harvested_Crops.ToString();
         }
-
-        // * BUG FIX : Whenever the number should be updated outside of the update function then update the UI value, otherwise this cannot be overridden by the CropBotPlayerInteraction.cs Script
 
         if (Input.GetKeyDown(KeyCode.F1))
         {
-
             shouldBeScouting = true;
             sendThroughGate = false;
         }
 
         if (Input.GetKeyDown(KeyCode.F2))
         {
-
             shouldBeScouting = false;
             sendThroughGate = false;
         }
 
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            // ensure the ui is hidden after the proximity game object has been set to inactive
             CropsUI.SetActive(false);
             shouldBeScouting = false;
             sendThroughGate = true;
@@ -190,7 +147,7 @@ public class CropBot : MonoBehaviour
             if (ReadyToTravel)
             {
                 this.transform.position = Vector3.MoveTowards(this.transform.position, GatePuddleLocation.transform.position, 0.3f);
-                //once the bot has travelled through the gate reset sendthrough gate to false and ready to travel to false as well
+
                 if (this.transform.position == GatePuddleLocation.transform.position)
                 {
                     sendThroughGate = false;
@@ -201,12 +158,11 @@ public class CropBot : MonoBehaviour
 
         if (shouldBeScouting)
         {
-            // remove the nissing game objects 
+            // remove the missing game objects 
             CropsToHarvest = CropsToHarvest.Where(item => item != null).ToList();
 
             // remove duplicates from the list
             CropsToHarvest = CropsToHarvest.Distinct().ToList();
-
 
             if (CropsToHarvest.Count > 0)
             {
@@ -217,8 +173,6 @@ public class CropBot : MonoBehaviour
                 inRange = false;
             }
 
-
-            // if you are within range of soe crops, then fly over to them and start farming
             if (inRange)
             {
                 cropsBeingFarmed = CropsToHarvest[0];
