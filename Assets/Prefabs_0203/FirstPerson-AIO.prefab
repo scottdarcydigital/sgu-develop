@@ -145,7 +145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &785676743
 Transform:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.01
   far clip plane: 5000
   field of view: 60
   orthographic: 0
@@ -445,12 +445,12 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
-  clearColorMode: 0
+  clearColorMode: 1
   backgroundColorHDR: {r: 0, g: 0, b: 0, a: 0}
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   volumeAnchorOverride: {fileID: 0}
   antialiasing: 1
   SMAAQuality: 2
@@ -469,7 +469,7 @@ MonoBehaviour:
   xrRendering: 1
   fullscreenPassthrough: 0
   allowDynamicResolution: 0
-  customRenderingSettings: 0
+  customRenderingSettings: 1
   invertFaceCulling: 0
   probeLayerMask:
     serializedVersion: 2
@@ -489,7 +489,7 @@ MonoBehaviour:
   renderingPathCustomFrameSettingsOverrideMask:
     mask:
       data1: 0
-      data2: 0
+      data2: 288230376151711744
   defaultFrameSettings: 0
 --- !u!114 &8494949486820199140
 MonoBehaviour:
@@ -563,7 +563,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 723.06836
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -697,9 +697,9 @@ MonoBehaviour:
   targetAngles: {x: 0, y: 0, z: 0}
   playerCanMove: 1
   walkByDefault: 1
-  walkSpeed: 4
+  walkSpeed: 10
   sprintKey: 304
-  sprintSpeed: 8
+  sprintSpeed: 20
   jumpPower: 10
   canJump: 1
   canHoldJump: 0
@@ -988,8 +988,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 63.661976
-  m_Range: 12
+  m_Intensity: 31830.988
+  m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1057,7 +1057,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 800
+  m_Intensity: 400000
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
