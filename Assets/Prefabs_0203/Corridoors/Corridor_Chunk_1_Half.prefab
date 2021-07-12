@@ -1679,7 +1679,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8993037885654369006, guid: 1175035a75c96b84184a56d0461652d0, type: 3}
+  - {fileID: 2100000, guid: e4d4e97089b7d7f478e369696a5a5bcc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3785,7 +3785,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3644592619225599223, guid: 1175035a75c96b84184a56d0461652d0, type: 3}
+  - {fileID: 2100000, guid: e4d4e97089b7d7f478e369696a5a5bcc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4060,7 +4060,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6317174325869509531}
   m_Layer: 0
-  m_Name: Corridor_Chunk_1_Half (11)
+  m_Name: Corridor_Chunk_1_Half
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
