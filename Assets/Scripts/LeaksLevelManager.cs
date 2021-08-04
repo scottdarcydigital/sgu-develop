@@ -6,15 +6,15 @@ using UnityEngine;
 public class LeaksLevelManager : MonoBehaviour
 {
     public List<Light> TuskLights = new List<Light>();
-    public List<Light> DoorLights = new List<Light>();
-    public List<Light> Corridoor_FloorLights = new List<Light>();
+//    public List<Light> DoorLightsGateRoomEast_West = new List<Light>();
+    //public List<Light> Corridoor_FloorLights = new List<Light>();
     public List<GameObject> GateRoom_FloorLights = new List<GameObject>();
     public List<GameObject> Gameobject_DoorLights = new List<GameObject>();
     public List<GameObject> Gameobject_BalconyUnderLights = new List<GameObject>();
     public List<GameObject> Gameobject_TuskLights = new List<GameObject>();
     public List<GameObject> Gameobject_StairsLights = new List<GameObject>();
 
-    public List<Light> Lights_To_Disable = new List<Light>();
+    //public List<Light> Lights_To_Disable = new List<Light>();
 
     public Material Material_TuskRed;
     public Material Material_TuskYellow;
@@ -40,7 +40,7 @@ public class LeaksLevelManager : MonoBehaviour
 
     public List<Light> MainGateRoomLight_Safe = new List<Light>();
     public List<Light> MainGateRoomLight = new List<Light>();
-    public List<Light> TuskGateRoomLight = new List<Light>();
+    //public List<Light> TuskGateRoomLight = new List<Light>();
 
     public bool LevelSolved;
 
@@ -99,10 +99,10 @@ public class LeaksLevelManager : MonoBehaviour
             Underlights.GetComponent<MeshRenderer>().material = Material_GlowRed;
         }
 
-        foreach (Light DoorLight in DoorLights)
-        {
-            DoorLight.GetComponent<Light>().color = Color.red;
-        }
+        //foreach (Light DoorLight in DoorLightsGateRoomEast_West)
+        //{
+        //    DoorLight.GetComponent<Light>().color = Color.red;
+        //}
 
         foreach (GameObject Door in Gameobject_DoorLights)
         {
@@ -124,13 +124,15 @@ public class LeaksLevelManager : MonoBehaviour
             FloorLights.GetComponent<MeshRenderer>().material = Material_GlowRed;
         }
 
-        foreach (Light LightsToDisable in Lights_To_Disable)
-        {
-            LightsToDisable.enabled = false;
-        }
+        //foreach (Light LightsToDisable in Lights_To_Disable)
+        //{
+        //    LightsToDisable.enabled = false;
+        //}
 
-        Gameobject_StairsLights[0].SetActive(false);
-        Gameobject_StairsLights[1].SetActive(false);
+        foreach (GameObject StairsLights in Gameobject_StairsLights)
+        {
+            StairsLights.GetComponent<MeshRenderer>().material = Material_GlowRed;
+        }
 
         foreach (Light MainWarningLights in MainGateRoomLight)
         {
@@ -162,10 +164,10 @@ public class LeaksLevelManager : MonoBehaviour
             Underlights.GetComponent<MeshRenderer>().material = Material_GlowYellow;
         }
 
-        foreach (Light DoorLight in DoorLights)
-        {
-            DoorLight.GetComponent<Light>().color = Color.yellow;
-        }
+        //foreach (Light DoorLight in DoorLightsGateRoomEast_West)
+        //{
+        //    DoorLight.GetComponent<Light>().color = Color.yellow;
+        //}
 
         foreach (GameObject Door in Gameobject_DoorLights)
         {
@@ -187,13 +189,10 @@ public class LeaksLevelManager : MonoBehaviour
             FloorLights.GetComponent<MeshRenderer>().material = Material_GlowYellow;
         }
 
-        foreach (Light LightsToDisable in Lights_To_Disable)
+        foreach (GameObject StairsLights in Gameobject_StairsLights)
         {
-            LightsToDisable.enabled = true;
+            StairsLights.GetComponent<MeshRenderer>().material = Material_GlowYellow;
         }
-
-        Gameobject_StairsLights[0].SetActive(true);
-        Gameobject_StairsLights[1].SetActive(true);
 
         foreach (Light MainWarningLights in MainGateRoomLight)
         {
@@ -210,29 +209,30 @@ public class LeaksLevelManager : MonoBehaviour
 
         LevelSolved = false; // ensuring the update funtion only runs this once
     }
+    
+    //void TuskLightsFlashing()
+    //{
+    //    if (TuskLightIncrement)
+    //    {
+    //        TuskLightValue += 0.1f;
+    //        TuskGateRoomLight[0].GetComponent<HDAdditionalLightData>().intensity = TuskLightValue;
+    //         if (TuskGateRoomLight[0].GetComponent<HDAdditionalLightData>().intensity >= TuskLightMaxValue)
+    //        {
+    //            TuskLightIncrement = false;
+    //        }
+    //    }
 
-    void TuskLightsFlashing()
-    {
-        if (TuskLightIncrement)
-        {
-            TuskLightValue += 0.1f;
-            TuskGateRoomLight[0].GetComponent<HDAdditionalLightData>().intensity = TuskLightValue;
-             if (TuskGateRoomLight[0].GetComponent<HDAdditionalLightData>().intensity >= TuskLightMaxValue)
-            {
-                TuskLightIncrement = false;
-            }
-        }
-
-        if (!TuskLightIncrement)
-        {
-            TuskLightValue -= 0.1f;
-            TuskGateRoomLight[0].GetComponent<HDAdditionalLightData>().intensity = TuskLightValue;
-            if (TuskGateRoomLight[0].GetComponent<HDAdditionalLightData>().intensity <= 18)
-            {
-                TuskLightIncrement = true;
-            }
-        }
-    }
+    //    if (!TuskLightIncrement)
+    //    {
+    //        TuskLightValue -= 0.1f;
+    //        TuskGateRoomLight[0].GetComponent<HDAdditionalLightData>().intensity = TuskLightValue;
+    //        if (TuskGateRoomLight[0].GetComponent<HDAdditionalLightData>().intensity <= 18)
+    //        {
+    //            TuskLightIncrement = true;
+    //        }
+    //    }
+    //}
+    
 
     void LightFlashing()
     {
