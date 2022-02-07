@@ -28,13 +28,13 @@ MonoBehaviour:
     m_Value: 5000000
   compensation:
     m_OverrideState: 1
-    m_Value: 5.75
+    m_Value: 15
   limitMin:
     m_OverrideState: 1
-    m_Value: 3.88
+    m_Value: 7.89
   limitMax:
-    m_OverrideState: 0
-    m_Value: 7.5
+    m_OverrideState: 1
+    m_Value: 12.52
   curveMap:
     m_OverrideState: 1
     m_Value:
@@ -108,7 +108,7 @@ MonoBehaviour:
   active: 1
   m_AdvancedMode: 0
   lift:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: 0.033682473}
   gamma:
     m_OverrideState: 1
@@ -135,12 +135,12 @@ MonoBehaviour:
     m_Value: 3
   contrast:
     m_OverrideState: 1
-    m_Value: 23
+    m_Value: -17
     min: -100
     max: 100
   colorFilter:
     m_OverrideState: 1
-    m_Value: {r: 1.4803047, g: 1.2811681, b: 0.956612, a: 1}
+    m_Value: {r: 0.7830189, g: 0.74251366, b: 0.60942507, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1
@@ -151,7 +151,7 @@ MonoBehaviour:
     max: 180
   saturation:
     m_OverrideState: 1
-    m_Value: 25
+    m_Value: -20
     min: -100
     max: 100
 --- !u!114 &6175386631583030845
@@ -215,17 +215,17 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 4
+    m_Value: 2.29
     min: 0
     max: 4
   directLightingStrength:
     m_OverrideState: 1
-    m_Value: 0.3
+    m_Value: 0.738
     min: 0
     max: 1
   radius:
     m_OverrideState: 1
-    m_Value: 0.4
+    m_Value: 1.42
     min: 0.25
     max: 5
   temporalAccumulation:
@@ -404,7 +404,7 @@ MonoBehaviour:
     max: 1
   gamma:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 1.75
     min: 0.001
   lutTexture:
     m_OverrideState: 0
