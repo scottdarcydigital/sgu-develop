@@ -31,7 +31,7 @@ MonoBehaviour:
     m_Value: 15
   limitMin:
     m_OverrideState: 1
-    m_Value: 7.89
+    m_Value: 7.5
   limitMax:
     m_OverrideState: 1
     m_Value: 12.52
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   postExposure:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 4
   contrast:
     m_OverrideState: 1
     m_Value: -17
