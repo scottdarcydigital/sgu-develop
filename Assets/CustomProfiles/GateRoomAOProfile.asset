@@ -34,7 +34,7 @@ MonoBehaviour:
     m_Value: 8.5
   limitMax:
     m_OverrideState: 0
-    m_Value: 7.5
+    m_Value: 10
   curveMap:
     m_OverrideState: 1
     m_Value:
@@ -107,14 +107,14 @@ MonoBehaviour:
   active: 1
   m_AdvancedMode: 0
   lift:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: -0.014164415}
+    m_OverrideState: 1
+    m_Value: {x: 0.8835052, y: 0.8749758, z: 1, w: -0.04172451}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0.03619013}
+    m_Value: {x: 0.9832887, y: 0.97459155, z: 1, w: 0.17408107}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.5382437}
+    m_Value: {x: 0.9898156, y: 1, z: 0.94716316, w: 0.002239305}
 --- !u!114 &4741263910470362412
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -131,15 +131,15 @@ MonoBehaviour:
   m_AdvancedMode: 0
   postExposure:
     m_OverrideState: 1
-    m_Value: 5
+    m_Value: 2.5
   contrast:
     m_OverrideState: 1
-    m_Value: -13
+    m_Value: -37
     min: -100
     max: 100
   colorFilter:
     m_OverrideState: 1
-    m_Value: {r: 0.6156863, g: 0.6627451, b: 0.6627451, a: 1}
+    m_Value: {r: 0.990566, g: 0.9645716, b: 0.9204788, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1
@@ -150,7 +150,7 @@ MonoBehaviour:
     max: 180
   saturation:
     m_OverrideState: 1
-    m_Value: -20
+    m_Value: -32
     min: -100
     max: 100
 --- !u!114 &6175386631583030845
@@ -169,28 +169,28 @@ MonoBehaviour:
   m_AdvancedMode: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.9216529, y: 0.9281717, z: 1, w: -0.09325976}
+    m_Value: {x: 0.90253234, y: 0.9701083, z: 1, w: -0.1706292}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9443248, z: 0.935097, w: -0.2616279}
+    m_Value: {x: 0.90312356, y: 0.9827052, z: 1, w: -0.19342373}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 0.954715, y: 1, z: 0.95252395, w: -0.26162794}
+    m_Value: {x: 1, y: 0.9967853, z: 0.8320352, w: 0.08653445}
   shadowsStart:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.1
     min: 0
   shadowsEnd:
     m_OverrideState: 1
-    m_Value: 0.31
+    m_Value: 0.25
     min: 0
   highlightsStart:
     m_OverrideState: 1
-    m_Value: 0.69
+    m_Value: 0.5
     min: 0
   highlightsEnd:
     m_OverrideState: 1
-    m_Value: 0.88
+    m_Value: 0.87
     min: 0
 --- !u!114 &6527692229202576844
 MonoBehaviour:
@@ -214,17 +214,17 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1.5
+    m_Value: 2.29
     min: 0
     max: 4
   directLightingStrength:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.75
     min: 0
     max: 1
   radius:
     m_OverrideState: 1
-    m_Value: 1.2
+    m_Value: 1.5
     min: 0.25
     max: 5
   temporalAccumulation:
@@ -312,7 +312,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.422
+    m_Value: 0
     min: 0
     max: 1
   smoothness:
@@ -355,17 +355,17 @@ MonoBehaviour:
     m_Value: 3
   toeStrength:
     m_OverrideState: 1
-    m_Value: 0.396
+    m_Value: 0.319
     min: 0
     max: 1
   toeLength:
     m_OverrideState: 1
-    m_Value: 0.509
+    m_Value: 0.437
     min: 0
     max: 1
   shoulderStrength:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.503
     min: 0
     max: 1
   shoulderLength:
@@ -379,7 +379,7 @@ MonoBehaviour:
     max: 1
   gamma:
     m_OverrideState: 1
-    m_Value: 1.09
+    m_Value: 1.55
     min: 0.001
   lutTexture:
     m_OverrideState: 0
