@@ -343,7 +343,7 @@ public class SealLeaks : MonoBehaviour
             Doors_safe[3] = Doors[3].GetComponent<DoorOpen>().DoorSafe = true;
             Doors_safe[4] = Doors[4].GetComponent<DoorOpen>().DoorSafe = true;
             Doors_safe[5] = Doors[5].GetComponent<DoorOpen>().DoorSafe = false;
-            Doors_safe[6] = Doors[6].GetComponent<DoorOpen>().DoorSafe = true;
+            Doors_safe[6] = Doors[6].GetComponent<DoorOpen>().DoorSafe = false;
             Doors_safe[7] = Doors[7].GetComponent<DoorOpen>().DoorSafe = true;
             Doors_safe[8] = Doors[8].GetComponent<DoorOpen>().DoorSafe = true;
             Doors_safe[9] = Doors[9].GetComponent<DoorOpen>().DoorSafe = true;
@@ -362,7 +362,7 @@ public class SealLeaks : MonoBehaviour
             Doors_safe[3] = true;
             Doors_safe[4] = true;
             Doors_safe[5] = false;
-            Doors_safe[6] = true;
+            Doors_safe[6] = false;
             Doors_safe[7] = true;
             Doors_safe[8] = true;
             Doors_safe[9] = true;
