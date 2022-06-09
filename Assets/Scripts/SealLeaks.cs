@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class SealLeaks : MonoBehaviour
 {
+    public LeaksLevelManagerAlpha LevelManager;
+
+
+    public bool LevelCompleteStatus = false;
+
     [SerializeField] public GameObject sealLeaks_MenuUI_1;
 
     public bool usingRemote = false;
@@ -46,6 +51,7 @@ public class SealLeaks : MonoBehaviour
         Button_Console_2_Activate.onClick.AddListener(ConsoleToggle_2);
         Button_Console_3_Activate.onClick.AddListener(ConsoleToggle_3);
         Button_Console_4_Activate.onClick.AddListener(ConsoleToggle_4);
+        LevelManager = FindObjectOfType<LeaksLevelManagerAlpha>();
     }
 
     public void ConsoleToggle_1()
@@ -375,6 +381,10 @@ public class SealLeaks : MonoBehaviour
             Doors_safe[16] = false;
             Doors_safe[17] = true;
 
+            Debug.Log("LEVEL FINISHED 1");
+            LevelCompleteStatus = true;
+            LevelManager.LevelSolved = true;
+
             Console_4_Active = true;
         }
         else if (Console_4_Active)
@@ -479,5 +489,11 @@ public class SealLeaks : MonoBehaviour
         PlayerScript.playerCanMove = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        if (LevelManager.LevelSolved == true)
+        {
+            Debug.Log("WELL DONE, TRIGGER LEVEL LOAD....");
+            // change the scene here...
+
+        }
     }
 }

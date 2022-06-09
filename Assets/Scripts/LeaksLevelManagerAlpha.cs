@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class LeaksLevelManagerAlpha : MonoBehaviour
 {
+
+    // Bool LevelFinished State taken from SealLeaks,cs
+    public SealLeaks LevelComplete;
 
     // No lights objects needed as we will be changing scenes on completion
 
@@ -21,18 +25,21 @@ public class LeaksLevelManagerAlpha : MonoBehaviour
 
     public Volume DangerLevelVolume;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
         // MAKE LIGHTS FLASH BASE ON INCREMENT OVER TIME 
         //Invoke("GateRoomLightFlashing3", 0.0f);
         DangerVolumeFlashing();
+
+        if (LevelSolved)
+        {
+            LevelSafe();
+        }
+
+
+        // listen for the console_4_switch having being pressed?
+        // also listen to see if the player is in the correct location, Should this be within the bounding boxes of the console_4 item? Yes
     }
 
     void DangerVolumeFlashing()
@@ -45,7 +52,7 @@ public class LeaksLevelManagerAlpha : MonoBehaviour
             if (DangerLevelVolume.GetComponent<Volume>().weight >= DangerVolumeMaxValue)
             {
                 DangerVolumeShouldIncrement = false;
-                Debug.Log("FLASH");
+                //Debug.Log("FLASH");
             }
         }
 
@@ -62,6 +69,20 @@ public class LeaksLevelManagerAlpha : MonoBehaviour
 
     void LevelSafe()
     {
-        // set bool and transition to next scene
+        Debug.Log("WELL DONE");
+
+        // keep the canvas open, but listen out for when the relevant parent is closed
+        // you will need a reference to the HideUI(); function NOTE: This is not a reference to console_4 in particular, just the closing it at any point the levelDSafe method is being called
+        LevelComplete = FindObjectOfType<SealLeaks>();
+        //LevelComplete.HideUI();
+
+        // once closed, change scenes and have the Room_17 in its own gamobject set to a DontDestroyOnLoad(); script
+
+
+    }
+
+    void LoadSafeLevel()
+    {
+        Application.LoadLevel("Level_1_SeakLeaks_Safe");
     }
 }
