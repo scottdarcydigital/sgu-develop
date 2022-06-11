@@ -9,7 +9,7 @@ public class LeaksLevelManagerAlpha : MonoBehaviour
 {
 
     // Bool LevelFinished State taken from SealLeaks,cs
-    public SealLeaks LevelComplete;
+    //public SealLeaks LevelComplete;
 
     // No lights objects needed as we will be changing scenes on completion
 
@@ -30,12 +30,16 @@ public class LeaksLevelManagerAlpha : MonoBehaviour
     {
         // MAKE LIGHTS FLASH BASE ON INCREMENT OVER TIME 
         //Invoke("GateRoomLightFlashing3", 0.0f);
-        DangerVolumeFlashing();
 
-        if (LevelSolved)
+        if (LevelSolved == false)
         {
-            LevelSafe();
+            DangerVolumeFlashing();
         }
+
+        //if (LevelSolved)
+        //{
+        //    //LoadSafeLevel();
+        //}
 
 
         // listen for the console_4_switch having being pressed?
@@ -67,22 +71,18 @@ public class LeaksLevelManagerAlpha : MonoBehaviour
         }
     }
 
-    void LevelSafe()
-    {
-        Debug.Log("WELL DONE");
+    //void LevelSafe()
+    //{
+    //    Debug.Log("WELL DONE");
 
-        // keep the canvas open, but listen out for when the relevant parent is closed
-        // you will need a reference to the HideUI(); function NOTE: This is not a reference to console_4 in particular, just the closing it at any point the levelDSafe method is being called
-        LevelComplete = FindObjectOfType<SealLeaks>();
-        //LevelComplete.HideUI();
+    //    // keep the canvas open, but listen out for when the relevant parent is closed
+    //    // you will need a reference to the HideUI(); function NOTE: This is not a reference to console_4 in particular, just the closing it at any point the levelDSafe method is being called
+    //    LevelComplete = FindObjectOfType<SealLeaks>();
+    //    //LevelComplete.HideUI();
 
-        // once closed, change scenes and have the Room_17 in its own gamobject set to a DontDestroyOnLoad(); script
+    //    // once closed, change scenes and have the Room_17 in its own gamobject set to a DontDestroyOnLoad(); script
 
 
-    }
+    //}
 
-    void LoadSafeLevel()
-    {
-        Application.LoadLevel("Level_1_SeakLeaks_Safe");
-    }
 }

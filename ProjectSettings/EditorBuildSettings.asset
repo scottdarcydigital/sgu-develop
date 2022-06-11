@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Leve_1_SealLeaks.unity
     guid: cf6d8db35165cab498de91d769179501
+  - enabled: 1
+    path: Assets/Scenes/Level_1_SeakLeaks_Safe.unity
+    guid: d55a1ebcc8cfcbe459f6e5f505e3cb35
   m_configObjects: {}
