@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3346488750953448464
 Transform:
@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2682682362933517994}
-  m_LocalRotation: {x: -0, y: -0.64845717, z: -0, w: 0.76125115}
+  m_LocalRotation: {x: 0, y: -0.6484588, z: 0, w: 0.7612498}
   m_LocalPosition: {x: -6.972506, y: -3.6419473, z: 15.749045}
   m_LocalScale: {x: 0.17999995, y: 0.24, z: 0.19029742}
   m_Children:
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 3025192671374300337}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -80.851, z: 0}
 --- !u!1 &3025192671374300342
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,11 +46,11 @@ GameObject:
   - component: {fileID: 3025192671374300336}
   - component: {fileID: 3025192671374300343}
   m_Layer: 0
-  m_Name: TuckLightTest2Light
+  m_Name: TuckLightTest2Light_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3025192671374300337
 Transform:
@@ -77,8 +77,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.9790636, b: 0.7877358, a: 1}
-  m_Intensity: 71619.72
+  m_Color: {r: 1, g: 0.08327952, b: 0, a: 1}
+  m_Intensity: 7957.747
   m_Range: 2.05
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -117,7 +117,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 5
@@ -254,7 +254,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8914104881008425305
 Transform:
@@ -297,7 +297,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 189dd2677be537942bec6d700a3b88c3, type: 2}
+  - {fileID: 2100000, guid: 0f87a6b199d0b3848ae19e5a7c448a27, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -331,11 +331,11 @@ GameObject:
   - component: {fileID: 3625282448926484780}
   - component: {fileID: 5137937955726708145}
   m_Layer: 0
-  m_Name: TuckLight_BulbMesh
+  m_Name: TuckLight_BulbMesh_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &118767517528357516
 Transform:
@@ -378,7 +378,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 163450cc5e5a0a8419e9b2fb89d2c50a, type: 2}
+  - {fileID: 2100000, guid: 2df3b5439bf93224586e2af21378117a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -416,7 +416,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1884483815865567116
 Transform:
@@ -459,7 +459,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 189dd2677be537942bec6d700a3b88c3, type: 2}
+  - {fileID: 2100000, guid: 0f87a6b199d0b3848ae19e5a7c448a27, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

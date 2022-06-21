@@ -17684,6 +17684,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main_Ring
       objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: a7e30e6b57441e941b1ff5fc58ac24ee, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7e30e6b57441e941b1ff5fc58ac24ee, type: 3}
 --- !u!4 &4570017753787492481 stripped

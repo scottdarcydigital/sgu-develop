@@ -11,6 +11,9 @@ public class DoorOpen : MonoBehaviour
     public GameObject Door_LeftClosePosition;
     public GameObject Door_RigthClosePosition;
 
+    // occlusion volume for anything behind the door
+    // public GameObject OcclussionVolume;
+
     //public GameObject DoorButtonLight;
     public List<GameObject> DoorButtonLights = new List<GameObject>();
 
@@ -43,6 +46,7 @@ public class DoorOpen : MonoBehaviour
 
     public void OpenDoorsFunction()
     {
+        this.GetComponent<OcclusionPortal>().open = true;
         Door_Left.transform.position = Vector3.MoveTowards(Door_Left.transform.position, Door_LeftOpenPosition.transform.position, 0.05f);
         Door_Right.transform.position = Vector3.MoveTowards(Door_Right.transform.position, Door_RigthOpenPosition.transform.position, 0.05f);
     }
@@ -53,6 +57,13 @@ public class DoorOpen : MonoBehaviour
         DoorButtonLights[1].GetComponent<MeshRenderer>().material = YellowGlow;
         Door_Left.transform.position = Vector3.MoveTowards(Door_Left.transform.position, Door_LeftClosePosition.transform.position, 0.1f);
         Door_Right.transform.position = Vector3.MoveTowards(Door_Right.transform.position, Door_RigthClosePosition.transform.position, 0.1f);
+        
+        // only trigger when doors are fully closed (position based due to tick time flucuation)
+        if (Door_Left.transform.position == Door_LeftClosePosition.transform.position)
+        {
+            this.GetComponent<OcclusionPortal>().open = false;
+        }
+
     }
 
     // Start is called before the first frame update

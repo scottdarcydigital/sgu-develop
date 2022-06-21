@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class SealLeaks : MonoBehaviour
 {
+    public LeaksLevelManagerAlpha LevelManager;
+
+
+    public bool LevelCompleteStatus = false;
+
     [SerializeField] public GameObject sealLeaks_MenuUI_1;
 
     public bool usingRemote = false;
@@ -46,6 +51,12 @@ public class SealLeaks : MonoBehaviour
         Button_Console_2_Activate.onClick.AddListener(ConsoleToggle_2);
         Button_Console_3_Activate.onClick.AddListener(ConsoleToggle_3);
         Button_Console_4_Activate.onClick.AddListener(ConsoleToggle_4);
+        LevelManager = FindObjectOfType<LeaksLevelManagerAlpha>();
+
+        if (LevelManager.LevelSolved == true)
+        {
+
+        }
     }
 
     public void ConsoleToggle_1()
@@ -343,7 +354,7 @@ public class SealLeaks : MonoBehaviour
             Doors_safe[3] = Doors[3].GetComponent<DoorOpen>().DoorSafe = true;
             Doors_safe[4] = Doors[4].GetComponent<DoorOpen>().DoorSafe = true;
             Doors_safe[5] = Doors[5].GetComponent<DoorOpen>().DoorSafe = false;
-            Doors_safe[6] = Doors[6].GetComponent<DoorOpen>().DoorSafe = true;
+            Doors_safe[6] = Doors[6].GetComponent<DoorOpen>().DoorSafe = false;
             Doors_safe[7] = Doors[7].GetComponent<DoorOpen>().DoorSafe = true;
             Doors_safe[8] = Doors[8].GetComponent<DoorOpen>().DoorSafe = true;
             Doors_safe[9] = Doors[9].GetComponent<DoorOpen>().DoorSafe = true;
@@ -362,7 +373,7 @@ public class SealLeaks : MonoBehaviour
             Doors_safe[3] = true;
             Doors_safe[4] = true;
             Doors_safe[5] = false;
-            Doors_safe[6] = true;
+            Doors_safe[6] = false;
             Doors_safe[7] = true;
             Doors_safe[8] = true;
             Doors_safe[9] = true;
@@ -374,6 +385,10 @@ public class SealLeaks : MonoBehaviour
             Doors_safe[15] = true;
             Doors_safe[16] = false;
             Doors_safe[17] = true;
+
+            Debug.Log("LEVEL FINISHED 1");
+            LevelCompleteStatus = true;
+            LevelManager.LevelSolved = true;
 
             Console_4_Active = true;
         }
@@ -479,5 +494,13 @@ public class SealLeaks : MonoBehaviour
         PlayerScript.playerCanMove = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        // Listen out for the Level solved property every time you close this menu..
+        if (LevelManager.LevelSolved == true)
+        {
+            Debug.Log("WELL DONE, TRIGGER LEVEL LOAD....");
+            // change the scene here...
+            Application.LoadLevel("Level_1_SeakLeaks_Safe");
+        }
     }
 }
