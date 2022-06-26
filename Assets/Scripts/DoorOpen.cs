@@ -11,6 +11,9 @@ public class DoorOpen : MonoBehaviour
     public GameObject Door_LeftClosePosition;
     public GameObject Door_RigthClosePosition;
 
+    public List<AudioClip> audioClips;
+
+
     // occlusion volume for anything behind the door
     // public GameObject OcclussionVolume;
 
@@ -24,6 +27,13 @@ public class DoorOpen : MonoBehaviour
     public bool DoorSafe;
     public bool PlayerInRange;
     public bool OpenDoors;
+
+    public bool PlayingDoorsOpeningAudio;
+    public bool PlayDoorsFullyOpenAudio;
+
+    public bool PlayingDoorsClosingAudio;
+    public bool PlayDoorsFullyClosedAudio;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -40,28 +50,76 @@ public class DoorOpen : MonoBehaviour
         {
             PlayerInRange = false;
             OpenDoors = false;
+            PlayingDoorsClosingAudio = true;
+            PlayDoorsFullyClosedAudio = true;
             CloseDoorsFunction();
         }
     }
 
     public void OpenDoorsFunction()
     {
+        if (!PlayingDoorsOpeningAudio)
+        {
+            PlayingDoorsOpeningAudio = true;
+            this.gameObject.GetComponent<AudioSource>().clip = audioClips[1];
+            this.gameObject.GetComponent<AudioSource>().Play();
+        }
+
+        Debug.Log("Doros opening....");
+
         this.GetComponent<OcclusionPortal>().open = true;
-        Door_Left.transform.position = Vector3.MoveTowards(Door_Left.transform.position, Door_LeftOpenPosition.transform.position, 0.05f);
-        Door_Right.transform.position = Vector3.MoveTowards(Door_Right.transform.position, Door_RigthOpenPosition.transform.position, 0.05f);
+        Door_Left.transform.position = Vector3.MoveTowards(Door_Left.transform.position, Door_LeftOpenPosition.transform.position, 0.015f);
+        Door_Right.transform.position = Vector3.MoveTowards(Door_Right.transform.position, Door_RigthOpenPosition.transform.position, 0.015f);
+
+        if (Door_Left.transform.position == Door_LeftOpenPosition.transform.position && 
+            Door_Right.transform.position == Door_RigthOpenPosition.transform.position)
+        {
+            if (!PlayDoorsFullyOpenAudio)
+            {
+                PlayDoorsFullyOpenAudio = true;
+                Debug.Log("Door is fully open");
+                this.gameObject.GetComponent<AudioSource>().clip = audioClips[2];
+                this.gameObject.GetComponent<AudioSource>().Play();
+            }
+            
+        }
+
     }
 
     public void CloseDoorsFunction()
     {
+        if (PlayingDoorsClosingAudio)
+        {
+            PlayingDoorsClosingAudio = false;
+            this.gameObject.GetComponent<AudioSource>().clip = audioClips[3];
+            this.gameObject.GetComponent<AudioSource>().Play();
+        }
+
+        Debug.Log("Doros closing....");
+
         DoorButtonLights[0].GetComponent<MeshRenderer>().material = YellowGlow;
         DoorButtonLights[1].GetComponent<MeshRenderer>().material = YellowGlow;
-        Door_Left.transform.position = Vector3.MoveTowards(Door_Left.transform.position, Door_LeftClosePosition.transform.position, 0.1f);
-        Door_Right.transform.position = Vector3.MoveTowards(Door_Right.transform.position, Door_RigthClosePosition.transform.position, 0.1f);
+        Door_Left.transform.position = Vector3.MoveTowards(Door_Left.transform.position, Door_LeftClosePosition.transform.position, 0.02f);
+        Door_Right.transform.position = Vector3.MoveTowards(Door_Right.transform.position, Door_RigthClosePosition.transform.position, 0.02f);
         
         // only trigger when doors are fully closed (position based due to tick time flucuation)
-        if (Door_Left.transform.position == Door_LeftClosePosition.transform.position)
+        if (Door_Left.transform.position == Door_LeftClosePosition.transform.position &&
+            Door_Right.transform.position == Door_RigthClosePosition.transform.position)
         {
             this.GetComponent<OcclusionPortal>().open = false;
+            Debug.Log("DOOR IS NOW CLOSED, The audio open track can be played again...");
+            PlayingDoorsOpeningAudio = false;
+            PlayDoorsFullyOpenAudio = false;
+
+            if (PlayDoorsFullyClosedAudio)
+            {
+                Debug.Log("Door fully closed audio");
+                PlayDoorsFullyClosedAudio = false;
+                this.gameObject.GetComponent<AudioSource>().clip = audioClips[2];
+                this.gameObject.GetComponent<AudioSource>().Play();
+
+            }
+
         }
 
     }
@@ -69,6 +127,18 @@ public class DoorOpen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     { }
+
+
+    IEnumerator OpenDoorsWithDelay()
+    {
+        yield return new WaitForSeconds(1.5f);
+        OpenDoors = true;
+    }
+
+
+
+
+
 
     // Update is called once per frame
     void Update()
@@ -92,9 +162,18 @@ public class DoorOpen : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    OpenDoors = true;
+                    // Button sound here
+                    this.gameObject.GetComponent<AudioSource>().clip = audioClips[0];
+                    this.gameObject.GetComponent<AudioSource>().Play();
+                    // if safe, play cog turning sound
+
+                    //after other sounds have played then open the door...
                     DoorButtonLights[0].GetComponent<MeshRenderer>().material = BlueGlow;
                     DoorButtonLights[1].GetComponent<MeshRenderer>().material = BlueGlow;
+
+                    // delay function to set true variablet o open doors
+                    StartCoroutine(OpenDoorsWithDelay());
+
                 }
 
                 if (OpenDoors)
