@@ -9,10 +9,16 @@ public class RadioPickUp : MonoBehaviour
     public GameObject Radio;
     public bool nearRadio;
 
+    public AudioSource DangerTrack;
+    public AudioSource AlarmTrack;
+
+    public RadioConversations Radio_Conversations;
+
     void Start()
     {
         Radio = this.gameObject;
         FirstConsole.GetComponent<CapsuleCollider>().enabled = false;
+        Radio_Conversations = FindObjectOfType<RadioConversations>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,6 +44,10 @@ public class RadioPickUp : MonoBehaviour
             if (nearRadio)
             {
                 FirstConsole.GetComponent<CapsuleCollider>().enabled = true;
+                
+                // reference the RadioConversation script and play the initial conversation before this object is destroyed
+                Radio_Conversations.audioSource.clip = Radio_Conversations.audioClips[0];
+                Radio_Conversations.audioSource.Play();
                 Destroy(this.gameObject);
             }
         }

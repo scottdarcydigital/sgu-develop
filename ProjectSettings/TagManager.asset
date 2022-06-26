@@ -16,6 +16,10 @@ TagManager:
   - Ore
   - LevelSafe
   - LevelDanger
+  - console1
+  - console2
+  - console3
+  - console4
   layers:
   - Default
   - TransparentFX
