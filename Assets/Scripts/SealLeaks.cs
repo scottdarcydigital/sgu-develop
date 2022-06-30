@@ -420,6 +420,11 @@ public class SealLeaks : MonoBehaviour
             LevelCompleteStatus = true;
             LevelManager.LevelSolved = true;
 
+            if (!Console_firstTime_PressedForAudioTrigger)
+            {
+                consoleSolved();
+            }
+
             Console_4_Active = true;
         }
         else if (Console_4_Active)

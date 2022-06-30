@@ -56,4 +56,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level_1_SeakLeaks_Safe.unity
     guid: d55a1ebcc8cfcbe459f6e5f505e3cb35
+  - enabled: 1
+    path: Assets/Scenes/GameOverScreen.unity
+    guid: 8fa316604bbd86d4f941da5bc93091a9
   m_configObjects: {}
