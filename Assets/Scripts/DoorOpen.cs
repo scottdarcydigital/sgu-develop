@@ -48,11 +48,37 @@ public class DoorOpen : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            PlayerInRange = false;
-            OpenDoors = false;
-            PlayingDoorsClosingAudio = true;
-            PlayDoorsFullyClosedAudio = true;
-            CloseDoorsFunction();
+
+            if (Door_Left.transform.position != Door_LeftClosePosition.transform.position &&
+            Door_Right.transform.position != Door_RigthClosePosition.transform.position) {
+                Debug.Log("WOO");
+                Debug.Log("WOO Door left : " + Door_Left.transform.position);
+                Debug.Log("WOO Door left Close.Pos : " + Door_LeftClosePosition.transform.position);
+                Debug.Log("WOO Door right : " + Door_Right.transform.position);
+                Debug.Log("WOO Door right Close.Pos : " + Door_RigthClosePosition.transform.position);
+                PlayingDoorsClosingAudio = true;
+                PlayDoorsFullyClosedAudio = true;
+                PlayerInRange = false;
+                OpenDoors = false;
+                CloseDoorsFunction();
+            } 
+            else
+            {
+                Debug.Log("WOOOo 2");
+
+            }
+            //PlayerInRange = false;
+            //OpenDoors = false;
+
+            // check to make sure the door close sound and function doesnt play if the doors are already closed...
+            //if (Door_Left.transform.position != Door_LeftClosePosition.transform.position &&
+            //Door_Right.transform.position != Door_RigthClosePosition.transform.position)
+            //{
+            //PlayingDoorsClosingAudio = true;
+            //PlayDoorsFullyClosedAudio = true;
+            //CloseDoorsFunction();
+            //}
+
         }
     }
 

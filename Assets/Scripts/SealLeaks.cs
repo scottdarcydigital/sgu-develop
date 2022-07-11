@@ -50,6 +50,9 @@ public class SealLeaks : MonoBehaviour
     public Sprite Door_Open;
     public Sprite Door_Closed;
 
+    private float PlayerRunSpeed;
+    private float PlayerWalkSpeed;
+
     void Start()
     {
         RadioRef = FindObjectOfType<RadioConversations>();
@@ -59,6 +62,9 @@ public class SealLeaks : MonoBehaviour
         Button_Console_3_Activate.onClick.AddListener(ConsoleToggle_3);
         Button_Console_4_Activate.onClick.AddListener(ConsoleToggle_4);
         LevelManager = FindObjectOfType<LeaksLevelManagerAlpha>();
+
+        PlayerWalkSpeed = PlayerScript.walkSpeed;
+        PlayerRunSpeed = PlayerScript.sprintSpeed; 
 
         if (LevelManager.LevelSolved == true)
         {
@@ -595,7 +601,7 @@ public class SealLeaks : MonoBehaviour
             Debug.Log("Started Coroutine for console 1...");
 
             //yield on a new YieldInstruction that waits for 5 seconds.
-            yield return new WaitForSeconds(28);
+            yield return new WaitForSeconds(10);
 
             //After we have waited 5 seconds print the time again.
             Debug.Log("Finished Coroutine at console 1...");
@@ -625,6 +631,14 @@ public class SealLeaks : MonoBehaviour
             if (LevelManager.LevelSolved == true)
             {
                 Debug.Log("WELL DONE, TRIGGER LEVEL LOAD....");
+                // Reset the player properties at before the next level loads, ensuring they can still run
+                PlayerScript.walkSpeed = PlayerWalkSpeed;   // ref set in start method
+                PlayerScript.sprintSpeed = PlayerRunSpeed;  // ref set in start method
+
+                Debug.Log("WELL DONE" + PlayerWalkSpeed);
+                Debug.Log("WELL DONE" + PlayerRunSpeed);
+
+
                 // change the scene here...
                 Application.LoadLevel("Level_1_SeakLeaks_Safe");
             }
