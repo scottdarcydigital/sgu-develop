@@ -28,7 +28,7 @@ MonoBehaviour:
     m_Value: 5000000
   compensation:
     m_OverrideState: 1
-    m_Value: 15
+    m_Value: 150
   limitMin:
     m_OverrideState: 1
     m_Value: 8.5
@@ -61,6 +61,58 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+  limitMinCurveMap:
+    m_OverrideState: 0
+    m_Value:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -10
+        value: -12
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 20
+        value: 18
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  limitMaxCurveMap:
+    m_OverrideState: 0
+    m_Value:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -10
+        value: -8
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 20
+        value: 22
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   adaptationMode:
     m_OverrideState: 1
     m_Value: 0
@@ -72,6 +124,39 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
     min: 0.001
+  weightTextureMask:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+  histogramPercentages:
+    m_OverrideState: 0
+    m_Value: {x: 40, y: 90}
+    min: 0
+    max: 100
+  histogramUseCurveRemapping:
+    m_OverrideState: 0
+    m_Value: 0
+  targetMidGray:
+    m_OverrideState: 0
+    m_Value: 0
+  centerAroundExposureTarget:
+    m_OverrideState: 0
+    m_Value: 0
+  proceduralCenter:
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
+  proceduralRadii:
+    m_OverrideState: 0
+    m_Value: {x: 0.3, y: 0.3}
+  maskMinIntensity:
+    m_OverrideState: 0
+    m_Value: -30
+  maskMaxIntensity:
+    m_OverrideState: 0
+    m_Value: 30
+  proceduralSoftness:
+    m_OverrideState: 0
+    m_Value: 0.5
+    min: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +193,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   lift:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.996901, z: 0.9955417, w: 0.021631638}
+    m_Value: {x: 1, y: 0.996901, z: 0.9955417, w: -0.033616986}
   gamma:
     m_OverrideState: 1
     m_Value: {x: 0.99048316, y: 0.99976903, z: 1, w: 0.019816238}
@@ -134,23 +219,23 @@ MonoBehaviour:
     m_Value: 0.5
   contrast:
     m_OverrideState: 1
-    m_Value: 5.2
+    m_Value: -37.3
     min: -100
     max: 100
   colorFilter:
-    m_OverrideState: 0
-    m_Value: {r: 1, g: 0.5330188, b: 0.5330188, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0.4433962, g: 0, b: 0, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1
   hueShift:
-    m_OverrideState: 0
-    m_Value: 8
+    m_OverrideState: 1
+    m_Value: 9
     min: -180
     max: 180
   saturation:
     m_OverrideState: 1
-    m_Value: 8
+    m_Value: 100
     min: -100
     max: 100
 --- !u!114 &6175386631583030845
@@ -169,7 +254,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.978361, z: 0.97901523, w: 0.31800848}
+    m_Value: {x: 1, y: 0.978361, z: 0.97901523, w: 0.000000097944394}
   midtones:
     m_OverrideState: 1
     m_Value: {x: 1, y: 0.99352205, z: 0.98847896, w: -0.017704664}
@@ -227,6 +312,11 @@ MonoBehaviour:
     m_Value: 1.5
     min: 0.25
     max: 5
+  spatialBilateralAggressiveness:
+    m_OverrideState: 0
+    m_Value: 0.15
+    min: 0
+    max: 1
   temporalAccumulation:
     m_OverrideState: 1
     m_Value: 1
@@ -245,27 +335,9 @@ MonoBehaviour:
     m_Value:
       serializedVersion: 2
       m_Bits: 4294967295
-  rayLength:
-    m_OverrideState: 1
-    m_Value: 0.5
-    min: 0
-    max: 50
-  sampleCount:
-    m_OverrideState: 1
-    m_Value: 4
-    min: 1
-    max: 64
-  denoise:
-    m_OverrideState: 1
-    m_Value: 0
-  denoiserRadius:
-    m_OverrideState: 1
-    m_Value: 0.5
-    min: 0.001
-    max: 1
   m_StepCount:
     m_OverrideState: 1
-    m_Value: 18
+    m_Value: 16
     min: 2
     max: 32
   m_FullResolution:
@@ -273,7 +345,7 @@ MonoBehaviour:
     m_Value: 0
   m_MaximumRadiusInPixels:
     m_OverrideState: 1
-    m_Value: 59
+    m_Value: 80
     min: 16
     max: 256
   m_BilateralUpsample:
@@ -281,9 +353,26 @@ MonoBehaviour:
     m_Value: 1
   m_DirectionCount:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 4
     min: 1
     max: 6
+  m_RayLength:
+    m_OverrideState: 1
+    m_Value: 20
+    min: 0
+  m_SampleCount:
+    m_OverrideState: 1
+    m_Value: 8
+    min: 1
+    max: 64
+  m_Denoise:
+    m_OverrideState: 1
+    m_Value: 1
+  m_DenoiserRadius:
+    m_OverrideState: 1
+    m_Value: 0.65
+    min: 0.001
+    max: 1
 --- !u!114 &7520449065807650170
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -365,7 +454,7 @@ MonoBehaviour:
     max: 1
   shoulderStrength:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.362
     min: 0
     max: 1
   shoulderLength:
