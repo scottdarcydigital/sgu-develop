@@ -7,10 +7,16 @@ public class SealLeaks : MonoBehaviour
 {
     public LeaksLevelManagerAlpha LevelManager;
 
-
     public bool LevelCompleteStatus = false;
 
+    public bool lockClosingConsole = true;
+
     [SerializeField] public GameObject sealLeaks_MenuUI_1;
+
+    public bool Console_firstTime_PressedForAudioTrigger = false;
+    public bool Console_firstTime_OpeningConsole = false;
+
+    public RadioConversations RadioRef;
 
     public bool usingRemote = false;
     public bool playerInRemoteRange = false;
@@ -44,14 +50,21 @@ public class SealLeaks : MonoBehaviour
     public Sprite Door_Open;
     public Sprite Door_Closed;
 
+    private float PlayerRunSpeed;
+    private float PlayerWalkSpeed;
+
     void Start()
     {
+        RadioRef = FindObjectOfType<RadioConversations>();
         PlayerScript = FindObjectOfType<FirstPersonAIO>();
         Button_Console_1_Activate.onClick.AddListener(ConsoleToggle_1);
         Button_Console_2_Activate.onClick.AddListener(ConsoleToggle_2);
         Button_Console_3_Activate.onClick.AddListener(ConsoleToggle_3);
         Button_Console_4_Activate.onClick.AddListener(ConsoleToggle_4);
         LevelManager = FindObjectOfType<LeaksLevelManagerAlpha>();
+
+        PlayerWalkSpeed = PlayerScript.walkSpeed;
+        PlayerRunSpeed = PlayerScript.sprintSpeed; 
 
         if (LevelManager.LevelSolved == true)
         {
@@ -61,6 +74,7 @@ public class SealLeaks : MonoBehaviour
 
     public void ConsoleToggle_1()
     {
+        // This only triggers when the UI button for sealing the door is clicked
         if (!Console_1_Active)
         {
             Air.GetComponent<Image>().sprite = Air_Active;
@@ -103,6 +117,13 @@ public class SealLeaks : MonoBehaviour
             Doors_safe[15] = false;
             Doors_safe[16] = true;
             Doors_safe[17] = false;
+            
+            // This only triggers when the UI button for sealing the door is clicked
+            Debug.Log("CONOLE DONE");
+            if (!Console_firstTime_PressedForAudioTrigger)
+            {
+                consoleSolved();
+            }
 
             Console_1_Active = true;
         }
@@ -149,7 +170,10 @@ public class SealLeaks : MonoBehaviour
             Doors_safe[16] = true;
             Doors_safe[17] = false;
 
+            Debug.Log("CONOLE NOT DONE");
+
             Console_1_Active = false;
+
         }
     }
 
@@ -197,6 +221,12 @@ public class SealLeaks : MonoBehaviour
             Doors_safe[15] = false;
             Doors_safe[16] = true;
             Doors_safe[17] = false;
+
+            Debug.Log("CONOLE DONE");
+            if (!Console_firstTime_PressedForAudioTrigger)
+            {
+                consoleSolved();
+            }
 
             Console_2_Active = true;
         }
@@ -291,6 +321,12 @@ public class SealLeaks : MonoBehaviour
             Doors_safe[15] = true;
             Doors_safe[16] = false;
             Doors_safe[17] = true;
+
+            Debug.Log("CONOLE DONE");
+            if (!Console_firstTime_PressedForAudioTrigger)
+            {
+                consoleSolved();
+            }
 
             Console_3_Active = true;
         }
@@ -390,6 +426,11 @@ public class SealLeaks : MonoBehaviour
             LevelCompleteStatus = true;
             LevelManager.LevelSolved = true;
 
+            if (!Console_firstTime_PressedForAudioTrigger)
+            {
+                consoleSolved();
+            }
+
             Console_4_Active = true;
         }
         else if (Console_4_Active)
@@ -485,22 +526,126 @@ public class SealLeaks : MonoBehaviour
         PlayerScript.playerCanMove = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        Debug.Log("You are at console : " + this.tag);
+
+        consoleOpened();
+
+        //if (!Console_firstTime_OpeningConsole && this.tag == "console1")
+        //{
+        //    Debug.Log("Console opened for the first time");
+            
+        //}
+
+    }
+
+    public void consoleOpened()
+    {
+        if (this.tag == "console1" && !Console_firstTime_OpeningConsole)
+        {
+            Debug.Log("Console 1 opened for first time...");
+
+            Console_firstTime_OpeningConsole = true;
+
+            RadioRef.audioSource.clip = RadioRef.audioClips[1];
+            RadioRef.audioSource.Play();
+
+            StartCoroutine(ExampleCoroutine());
+        }
+        if (this.tag == "console2" && !Console_firstTime_OpeningConsole)
+        {
+            Debug.Log("Console 2 opened for first time...");
+
+            Console_firstTime_OpeningConsole = true;
+
+            RadioRef.audioSource.clip = RadioRef.audioClips[4];
+            RadioRef.audioSource.Play();
+        }
+    }
+
+
+    public void consoleSolved()
+    {
+        if (this.tag == "console1")
+        {
+            RadioRef.audioSource.clip = RadioRef.audioClips[3];
+            RadioRef.audioSource.Play();
+            Console_firstTime_PressedForAudioTrigger = true;
+            lockClosingConsole = false;
+        }
+
+        if (this.tag == "console2")
+        {
+            lockClosingConsole = false;
+        }
+
+        if (this.tag == "console3")
+        {
+            RadioRef.audioSource.clip = RadioRef.audioClips[5];
+            RadioRef.audioSource.Play();
+            Console_firstTime_PressedForAudioTrigger = true;
+            lockClosingConsole = false;
+        }
+
+        if (this.tag == "console4")
+        {
+            lockClosingConsole = false;
+        }
+    }
+
+    IEnumerator ExampleCoroutine()
+    {
+        if (this.tag == "console1")
+        {
+            //Print the time of when the function is first called.
+            Debug.Log("Started Coroutine for console 1...");
+
+            //yield on a new YieldInstruction that waits for 5 seconds.
+            yield return new WaitForSeconds(10);
+
+            //After we have waited 5 seconds print the time again.
+            Debug.Log("Finished Coroutine at console 1...");
+
+            if (playerInRemoteRange)
+            {
+                Debug.Log("Playing console 1 hint....");
+                RadioRef.audioSource.clip = RadioRef.audioClips[2];
+                RadioRef.audioSource.Play();
+            }
+           
+        }
+        
     }
 
     public void HideUI()
     {
-        sealLeaks_MenuUI_1.SetActive(false);
-        PlayerScript.enableCameraMovement = true;
-        PlayerScript.playerCanMove = true;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
-        // Listen out for the Level solved property every time you close this menu..
-        if (LevelManager.LevelSolved == true)
+        if (!lockClosingConsole)
         {
-            Debug.Log("WELL DONE, TRIGGER LEVEL LOAD....");
-            // change the scene here...
-            Application.LoadLevel("Level_1_SeakLeaks_Safe");
+            sealLeaks_MenuUI_1.SetActive(false);
+            PlayerScript.enableCameraMovement = true;
+            PlayerScript.playerCanMove = true;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            // Listen out for the Level solved property every time you close this menu..
+            if (LevelManager.LevelSolved == true)
+            {
+                Debug.Log("WELL DONE, TRIGGER LEVEL LOAD....");
+                // Reset the player properties at before the next level loads, ensuring they can still run
+                PlayerScript.walkSpeed = PlayerWalkSpeed;   // ref set in start method
+                PlayerScript.sprintSpeed = PlayerRunSpeed;  // ref set in start method
+
+                Debug.Log("WELL DONE" + PlayerWalkSpeed);
+                Debug.Log("WELL DONE" + PlayerRunSpeed);
+
+
+                // change the scene here...
+                Application.LoadLevel("Level_1_SeakLeaks_Safe");
+            }
+        } else
+        {
+            return;
         }
+
     }
 }
