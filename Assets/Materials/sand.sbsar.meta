@@ -34,7 +34,8 @@ ScriptedImporter:
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _BaseColorMap
-        texture: {fileID: -3221469792449149533, guid: 922b576151b98ab43a0239b270957cc8, type: 3}
+        texture: {fileID: -3221469792449149533, guid: 922b576151b98ab43a0239b270957cc8,
+          type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _BentNormalMap
@@ -62,7 +63,8 @@ ScriptedImporter:
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _HeightMap
-        texture: {fileID: 7580809861964730587, guid: 922b576151b98ab43a0239b270957cc8, type: 3}
+        texture: {fileID: 7580809861964730587, guid: 922b576151b98ab43a0239b270957cc8,
+          type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _IridescenceMaskMap
@@ -74,15 +76,18 @@ ScriptedImporter:
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _MainTex
-        texture: {fileID: -3221469792449149533, guid: 922b576151b98ab43a0239b270957cc8, type: 3}
+        texture: {fileID: -3221469792449149533, guid: 922b576151b98ab43a0239b270957cc8,
+          type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _MaskMap
-        texture: {fileID: 4730190738038488635, guid: 922b576151b98ab43a0239b270957cc8, type: 3}
+        texture: {fileID: 4730190738038488635, guid: 922b576151b98ab43a0239b270957cc8,
+          type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _NormalMap
-        texture: {fileID: 6051370854423695738, guid: 922b576151b98ab43a0239b270957cc8, type: 3}
+        texture: {fileID: 6051370854423695738, guid: 922b576151b98ab43a0239b270957cc8,
+          type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _NormalMapOS
@@ -568,7 +573,8 @@ ScriptedImporter:
       textureFormatMode: 0
       normalCompressed: 0
       bGenerateOnLoad: 1
-    material: {fileID: 4473533661936549545, guid: 922b576151b98ab43a0239b270957cc8, type: 3}
+    material: {fileID: 4473533661936549545, guid: 922b576151b98ab43a0239b270957cc8,
+      type: 3}
     generatedTextures:
     - {fileID: -3221469792449149533, guid: 922b576151b98ab43a0239b270957cc8, type: 3}
     - {fileID: 6051370854423695738, guid: 922b576151b98ab43a0239b270957cc8, type: 3}
