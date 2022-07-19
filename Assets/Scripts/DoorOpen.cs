@@ -13,6 +13,8 @@ public class DoorOpen : MonoBehaviour
 
     public List<AudioClip> audioClips;
 
+    public List<GameObject> culledfViaScript;
+
 
     // occlusion volume for anything behind the door
     // public GameObject OcclussionVolume;
@@ -143,7 +145,12 @@ public class DoorOpen : MonoBehaviour
                 PlayDoorsFullyClosedAudio = false;
                 this.gameObject.GetComponent<AudioSource>().clip = audioClips[2];
                 this.gameObject.GetComponent<AudioSource>().Play();
-
+                // doors are fully closed so now disable the culled objects
+                foreach (GameObject cullObject in culledfViaScript)
+                {
+                    Debug.Log("1907 culled doors closed");
+                    cullObject.SetActive(false);
+                }
             }
 
         }
@@ -159,11 +166,18 @@ public class DoorOpen : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         OpenDoors = true;
+
+        // set the objects culling via script to display
+        foreach (GameObject cullObject in culledfViaScript)
+        {
+            Debug.Log("1907 culled doors opening");
+            cullObject.SetActive(true);
+        }
     }
 
 
 
-
+    
 
 
     // Update is called once per frame
