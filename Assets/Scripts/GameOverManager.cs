@@ -8,6 +8,8 @@ public class GameOverManager : MonoBehaviour
 {
     public bool GameOverState = false;
 
+    public GameObject Player;
+
     void Update()
     {
         if (GameOverState)
@@ -19,6 +21,7 @@ public class GameOverManager : MonoBehaviour
 
     public void ShowGameOverScreen()
     {
+        
         Application.LoadLevel("GameOverScreen");
     }
 }

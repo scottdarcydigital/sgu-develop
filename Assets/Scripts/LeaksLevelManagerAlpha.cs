@@ -23,9 +23,9 @@ public class LeaksLevelManagerAlpha : MonoBehaviour
     public float DangerVolumeIncrementValue;
     public float DangerWeightValue;
 
+
     public Volume DangerLevelVolume;
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         // MAKE LIGHTS FLASH BASE ON INCREMENT OVER TIME 
