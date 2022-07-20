@@ -26,6 +26,11 @@ public class LeaksLevelManagerAlpha : MonoBehaviour
 
     public Volume DangerLevelVolume;
 
+<<<<<<< HEAD
+    //public List<Light> DirectionalFlashingLights;
+
+=======
+>>>>>>> fe9c580991a28b442df5205c5988124e658785d2
     void FixedUpdate()
     {
         // MAKE LIGHTS FLASH BASE ON INCREMENT OVER TIME 
@@ -58,6 +63,21 @@ public class LeaksLevelManagerAlpha : MonoBehaviour
                 DangerVolumeShouldIncrement = false;
                 //Debug.Log("FLASH");
             }
+
+
+
+
+            //DangerWeightValue += DangerVolumeIncrementValue;
+            //foreach (Light flashingLight in DirectionalFlashingLights)
+            //{
+            //    flashingLight.intensity = DangerWeightValue;
+
+            //    if (flashingLight.intensity >= DangerVolumeMaxValue)
+            //    {
+            //        DangerVolumeShouldIncrement = false;
+
+            //    }
+            //}
         }
 
         if (!DangerVolumeShouldIncrement)
@@ -68,6 +88,18 @@ public class LeaksLevelManagerAlpha : MonoBehaviour
             {
                 DangerVolumeShouldIncrement = true;
             }
+
+            //DangerWeightValue -= DangerVolumeIncrementValue;
+            //foreach (Light flashingLight in DirectionalFlashingLights)
+            //{
+            //    flashingLight.intensity = DangerWeightValue;
+
+            //    if (flashingLight.intensity <= DangerVolumeMinValue)
+            //    {
+            //        DangerVolumeShouldIncrement = true;
+
+            //    }
+            //}
         }
     }
 
