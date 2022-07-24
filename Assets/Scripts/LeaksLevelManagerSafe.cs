@@ -24,10 +24,26 @@ public class LeaksLevelManagerSafe : MonoBehaviour
         fpsScript.headbobHeight = 1.0f;
         fpsScript.headbobSideMovement = 0.5f;
 
-        foreach (GameObject door in Doors)
+        MonoBehaviour[] armyUnits = Object.FindObjectsOfType<MonoBehaviour>();
+        foreach (MonoBehaviour v in armyUnits)
         {
-            door.GetComponent<DoorOpen>().DoorSafe = true;
+            Debug.Log(v.name + "-" + v.gameObject.name);
         }
+
+        //foreach (GameObject door in Doors)
+        //{
+        //    door.GetComponent<DoorOpen>().DoorSafe = true;
+        //}
+
+        
     }
 
+    private static void MTwo()
+    {
+        MonoBehaviour[] armyUnits = Object.FindObjectsOfType<MonoBehaviour>();
+        foreach (MonoBehaviour v in armyUnits)
+        {
+            Debug.Log(v.name + "-" + v.gameObject.name);
+        }
+    }
 }
