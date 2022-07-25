@@ -10,7 +10,7 @@ Material:
   m_Name: KinoRenderOverlay
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
   m_ShaderKeywords: _DISABLE_DECALS _DISABLE_SSR _DISABLE_SSR_TRANSPARENT _ENABLE_FOG_ON_TRANSPARENT
-    _MASKMAP _MATERIAL_FEATURE_CLEAR_COAT _NORMALMAP_TANGENT_SPACE _SURFACE_TYPE_TRANSPARENT
+    _MATERIAL_FEATURE_CLEAR_COAT _NORMALMAP_TANGENT_SPACE _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -32,8 +32,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseColorMap:
-        m_Texture: {fileID: 2800000, guid: 2a4483bc4627f8d4c8969253f3eb3304, type: 3}
-        m_Scale: {x: 20, y: 20}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BentNormalMap:
         m_Texture: {fileID: 0}
@@ -72,11 +72,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 2a4483bc4627f8d4c8969253f3eb3304, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
-        m_Texture: {fileID: 2800000, guid: be83f3bf2ca02e2489a6c08018594f82, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -187,14 +187,14 @@ Material:
     - _HeightPoMAmplitude: 2
     - _HeightTessAmplitude: 2
     - _HeightTessCenter: 0.5
-    - _InvTilingScale: 0.05
+    - _InvTilingScale: 1
     - _Ior: 1.5
     - _IridescenceMask: 1
     - _IridescenceThickness: 1
     - _LinkDetailsWithBase: 1
     - _MaterialID: 1
     - _Metallic: 0.187
-    - _MetallicRemapMax: 0.187
+    - _MetallicRemapMax: 0.18699996
     - _MetallicRemapMin: 0
     - _NormalMapSpace: 0
     - _NormalScale: 0
@@ -251,9 +251,9 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.4058383, g: 0.8864365, b: 0.9056604, a: 0.03529412}
+    - _BaseColor: {r: 0.08290317, g: 0.24666321, b: 0.254717, a: 0.03529412}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.40583828, g: 0.8864365, b: 0.9056604, a: 0.03529412}
+    - _Color: {r: 0.08290314, g: 0.24666318, b: 0.25471696, a: 0.03529412}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}

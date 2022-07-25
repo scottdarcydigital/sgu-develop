@@ -1,13 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class KinoPlayVideo : MonoBehaviour
 {
     public bool isInRange = false;
- 
+    public GameObject Player;
+    public GameObject FadeOut;
+    public Animator FadeOutAnimator;
+    public float fadeOutChangeSceneWaitTime;
+    public string CutSceneLevelName;
+    public bool change;
 
-    private void OnTriggerEnter(Collider other)
+    void Start()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -15,7 +26,7 @@ public class KinoPlayVideo : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -23,8 +34,11 @@ public class KinoPlayVideo : MonoBehaviour
         }
     }
 
-
-    // Update is called once per frame
+    void changeScene()
+    {
+        SceneManager.LoadScene(CutSceneLevelName);
+    }
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
@@ -32,8 +46,22 @@ public class KinoPlayVideo : MonoBehaviour
             if (isInRange)
             {
                 // Play video
+                Debug.Log("You should now play the video!");
+
+                // Freeze player movement
+                Player.GetComponent<Rigidbody>().isKinematic = true;
+
+                // Disable dont destroy on load script
+                Player.GetComponent<DontDestroyOnLoadPlayer>().enabled = false;
+
+                // Trigger animation fade out
+                FadeOut.SetActive(true);
+
+                Invoke("changeScene", fadeOutChangeSceneWaitTime);
+
             }
         }
         else { return; }
     }
+
 }
