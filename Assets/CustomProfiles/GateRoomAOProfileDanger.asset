@@ -18,20 +18,20 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1
   meteringMode:
-    m_OverrideState: 1
-    m_Value: 1
+    m_OverrideState: 0
+    m_Value: 0
   luminanceSource:
     m_OverrideState: 1
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: 5000000
+    m_Value: 25
   compensation:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 150
   limitMin:
     m_OverrideState: 1
-    m_Value: 10.26
+    m_Value: 5.75
   limitMax:
     m_OverrideState: 0
     m_Value: 3.7
@@ -114,8 +114,8 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   adaptationMode:
-    m_OverrideState: 1
-    m_Value: 0
+    m_OverrideState: 0
+    m_Value: 1
   adaptationSpeedDarkToLight:
     m_OverrideState: 0
     m_Value: 3
@@ -223,14 +223,14 @@ MonoBehaviour:
     min: -100
     max: 100
   colorFilter:
-    m_OverrideState: 1
-    m_Value: {r: 0.4433962, g: 0, b: 0, a: 1}
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 0, b: 0, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1
   hueShift:
     m_OverrideState: 1
-    m_Value: 9
+    m_Value: 5
     min: -180
     max: 180
   saturation:
@@ -254,13 +254,13 @@ MonoBehaviour:
   m_AdvancedMode: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.978361, z: 0.97901523, w: 0.000000097944394}
+    m_Value: {x: 0.87063205, y: 0.8637158, z: 1, w: -0.28442135}
   midtones:
     m_OverrideState: 1
     m_Value: {x: 1, y: 0.99352205, z: 0.98847896, w: -0.017704664}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9809056, z: 0.9848154, w: -0.058008514}
+    m_Value: {x: 1, y: 0.87540746, z: 0.8627895, w: 0.11005873}
   shadowsStart:
     m_OverrideState: 1
     m_Value: 0.1
@@ -304,7 +304,7 @@ MonoBehaviour:
     max: 4
   directLightingStrength:
     m_OverrideState: 1
-    m_Value: 0.75
+    m_Value: 0
     min: 0
     max: 1
   radius:
@@ -468,7 +468,7 @@ MonoBehaviour:
     max: 1
   gamma:
     m_OverrideState: 1
-    m_Value: 1.4
+    m_Value: 2.9
     min: 0.001
   lutTexture:
     m_OverrideState: 0
