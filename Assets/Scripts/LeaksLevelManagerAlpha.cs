@@ -26,11 +26,6 @@ public class LeaksLevelManagerAlpha : MonoBehaviour
 
     public Volume DangerLevelVolume;
 
-<<<<<<< HEAD
-    //public List<Light> DirectionalFlashingLights;
-
-=======
->>>>>>> fe9c580991a28b442df5205c5988124e658785d2
     void FixedUpdate()
     {
         // MAKE LIGHTS FLASH BASE ON INCREMENT OVER TIME 
