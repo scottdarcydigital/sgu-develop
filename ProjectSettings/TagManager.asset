@@ -20,6 +20,8 @@ TagManager:
   - console2
   - console3
   - console4
+  - CutSceneCamera
+  - LevelFadeOut
   layers:
   - Default
   - TransparentFX
