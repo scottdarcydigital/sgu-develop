@@ -23,8 +23,24 @@ public class LeaksLevelManagerAlpha : MonoBehaviour
     public float DangerVolumeIncrementValue;
     public float DangerWeightValue;
 
-
+    public Animator PlayerAnimator;
     public Volume DangerLevelVolume;
+
+    public GameObject Player;
+
+    void disablePlayerArrivalAnnimation()
+    {
+        // disable the player arrival animator when it has finished playing
+        // this allows the player to be controlled without the animator overriding input
+        PlayerAnimator.enabled = false;
+        Player.GetComponent<FirstPersonAIO>().enableCameraMovement = true;
+    }
+
+    private void Start()
+    {
+        Invoke("disablePlayerArrivalAnnimation", 13.0f);
+
+    }
 
     void FixedUpdate()
     {
