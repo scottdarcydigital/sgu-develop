@@ -23,7 +23,6 @@ public class LeaksLevelManagerAlpha : MonoBehaviour
     public float DangerVolumeIncrementValue;
     public float DangerWeightValue;
 
-<<<<<<< Updated upstream
     public Animator PlayerAnimator;
     public Volume DangerLevelVolume;
 
@@ -42,13 +41,7 @@ public class LeaksLevelManagerAlpha : MonoBehaviour
         Invoke("disablePlayerArrivalAnnimation", 13.0f);
 
     }
-=======
     
-
-    public Volume DangerLevelVolume;
-
-    
->>>>>>> Stashed changes
 
     void FixedUpdate()
     {
