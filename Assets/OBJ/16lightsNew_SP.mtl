@@ -1,12 +1,12 @@
-# File produced by Open Asset Import Library (http://www.assimp.sf.net)
-# (assimp v3.1.243586452)
+# Blender MTL File: 'None'
+# Material Count: 1
 
 newmtl WorldGridMaterial.001
-kd 0.172688 0.172688 0.172688
-ka 1 1 1
-ks 0.5 0.5 0.5
-ke 0 0 0
-d 1
-Ns 376.471
+Ns 376.470588
+Ka 1.000000 1.000000 1.000000
+Kd 0.172688 0.172688 0.172688
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
 illum 2
-
