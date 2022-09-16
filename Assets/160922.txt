@@ -1,0 +1,5 @@
+- 1.49 has multiple issues and bugs, what is the status of this? currently there is an RC2 needing to be created
+
+- 1.50 should this be the current priority while we wait for 1.49 issues to be stacked up
+
+
